@@ -17,15 +17,17 @@ app.use(session({secret: 'wolverinePack'}));
 app.use(passport.session());
 
 //Controllers 
-var BookmarksCtrl = require('./controllers/BookmarksCtrl'); 
+var QueueCtrl = require('./controllers/QueueCtrl');
 
 //Models
 var User = require('./models/User');
+var Location = require('./models/Location');
+var Customer = require('./models/Customer');
 
-//Configuration Files 
-var configAuth = require('./config/auth'); 
+//Configuration Files for Passport
+var configAuth = require('./config/auth');
 
-//Auth -- Local Strategy 
+//Auth -- Local Strategy
 passport.use(new LocalStrategy({
 	usernameField: 'email'
 }, function(email, password, done) {
@@ -45,7 +47,7 @@ passport.use(new LocalStrategy({
 	});
 }));
 
-
+//Middleware for Passport
 passport.serializeUser(function(user, done) {
   done(null, user._id);
 });
