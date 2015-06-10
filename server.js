@@ -67,6 +67,15 @@ var requireAuth = function(req, res, next){
 	next();
 }
 
+//TODO: Figure out how to access admin role from user model
+// var requireAdmin = function(req, res, next){
+//   if(!req.user.role === "admin"){
+//     return res.status(401).end();
+//   }
+//   console.log(req.user); 
+//   next(); 
+// }
+
 //Auth Endpoints 
 //Sign Up && Add User 
 app.post('/api/users', function(req, res) {
@@ -91,9 +100,7 @@ app.post('/api/users', function(req, res) {
 	})
 });
 
-//Login
-
-//Local 
+//Local Login Endpoint
 app.post('/api/users/auth', passport.authenticate('local', { failureRedirect: '/login' }), function(req, res) {
 	return res.json({message: "you logged in"});
 });
@@ -104,16 +111,9 @@ app.get('/api/auth/logout', function(req, res){
 	return res.status(200).json({message: "Logged Out"}).end(); 
 })
 
-
-//End of Auth Endpoints 
-
-//Favorite Bookmarks
+/* End of Auth Endpoints ****************************************************/
 
 
-//Endpoints 
-app.get('/api/:user_id/bookmarks', BookmarksCtrl.getBookmarks); 
-app.post('/api/:user_id/bookmarks', BookmarksCtrl.addBookmark); 
-app.post('/api/:user_id/bookmarks', BookmarksCtrl.addFolder); 
 //Database Connection 
 mongoose.connect('mongodb://localhost/fashionphile');
 
