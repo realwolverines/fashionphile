@@ -19,11 +19,11 @@ app.service('CustomerService', function($q, $http){
   this.addCustomer = function(customer){
     var dfd = $q.defer(); 
         $http({
-          method: 'POST'
+          method: 'POST',
           url: 'http://localhost:8080/api/queue',
           data: {
             "name": $scope.name, 
-            "status": "pending"
+            "status": "pending",
             "joined": Date.now
           }
         })
