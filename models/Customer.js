@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 var  customerModel = new Schema({
   name: String,
+  location: String, 
   joined: {type: Date, default: Date.now},
   status: {type: String, enum: ["pending", "done"], default: "pending"},
   helpedAt: {type: Date}
