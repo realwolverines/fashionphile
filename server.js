@@ -24,9 +24,6 @@ var User = require('./models/User');
 var Location = require('./models/Location');
 var Customer = require('./models/Customer');
 
-//Configuration Files for Passport
-var configAuth = require('./config/auth');
-
 //Auth -- Local Strategy
 passport.use(new LocalStrategy({
 	usernameField: 'email'
@@ -113,7 +110,7 @@ app.get('/api/auth/logout', function(req, res){
 })
 
 /* End of Auth Endpoints ****************************************************/
-
+app.post('/api/queue/', requireAuth, QueueCtrl.add); 
 
 //Database Connection 
 mongoose.connect('mongodb://localhost/fashionphile');
