@@ -2,16 +2,16 @@ var Customer = require('../models/Customer.js');
 
 module.exports = {
 
-  add: function(name){
+  add: function(req, res){
     var newCustomer = new Customer(req.body); 
-    console.log("req.body in customer", newCustomer); 
+    console.log("add method hit in queueCtrl.js", newCustomer); 
     newCustomer.save(function(err, newCustomer){
       console.log("newCustomer saved ", newCusutomer); 
       if(err){
         console.log(err); 
         return res.status(500).end(); 
       }
-      res.json(newCustomer); 
+      res.json(newCustomer);
     })
   },
 
@@ -33,7 +33,7 @@ module.exports = {
         console.log(res); 
         if(err) return res.status(500).end(); 
         return res.status(200).json(result); 
-      }); 
+      });
   },
 
   update: function(req, res){
