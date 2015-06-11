@@ -1,1 +1,5 @@
-<h1>customerview</h1>
+<h1>Customer Queue</h1>
+
+<p ng-repeat="customer in customers"></p>
+
+<input ng-keyup="$event.keyCode === 13 && addCustomer()" type="text" ng-model="name" placeholder="Type your name to enter queue">
