@@ -7,7 +7,7 @@ app.service('CustomerService', function($q, $http){
     var dfd = $q.defer(); 
       $http({
         method: 'GET', 
-        url: 'http://localhost:8070/api/queue'
+        url: 'http://localhost:8080/api/queue'
       })
       .then(function(res){
         dfd.resolve(res); 
@@ -19,7 +19,7 @@ app.service('CustomerService', function($q, $http){
     var dfd = $q.defer(); 
         $http({
           method: 'POST'
-          url: 'http://localhost:8070/api/queue',
+          url: 'http://localhost:8080/api/queue',
           data: customer
         })
         .then(function(res){
