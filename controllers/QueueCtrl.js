@@ -15,12 +15,10 @@ module.exports = {
     })
   },
 
-  list: function(req, res){
+  getByLocation: function(req, res){
     Customer
-      .find({}, function(err, customers){
-        if(err) {
-          res.status(500).end(); 
-        }
+      .find({location: }, function(err, customers){
+        if(err) res.status(500).end(); 
         res.json(customers); 
       })
   },
