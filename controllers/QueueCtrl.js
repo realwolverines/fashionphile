@@ -6,7 +6,7 @@ module.exports = {
     var newCustomer = new Customer(req.body); 
     console.log("add method hit in queueCtrl.js", newCustomer); 
     newCustomer.save(function(err, newCustomer){
-      console.log("newCustomer saved ", newCusutomer); 
+      console.log("newCustomer saved ", newCustomer); 
       if(err){
         console.log(err); 
         return res.status(500).end(); 
