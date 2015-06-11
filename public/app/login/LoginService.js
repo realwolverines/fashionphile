@@ -33,4 +33,4 @@ app.controller('LoginService', function(){
 
 });
 
-})();
+})();//end

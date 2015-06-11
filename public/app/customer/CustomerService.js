@@ -33,6 +33,6 @@ app.service('CustomerService', function($q, $http){
       return dfd.promise;
     }
 
-  }) /* End of Service logic */
+  })
   
-})();
+})();//end
