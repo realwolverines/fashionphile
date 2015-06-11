@@ -4,11 +4,11 @@ var Schema = mongoose.Schema;
 var q = require('q');
 
 var userSchema = new Schema({
-	name: {type: String, required: true},
-	email: {type: String, unique: true},
-	password: {type: String, required: true},
-	role: {type: String, enum: ["admin", "employee"]},
-	location: {type: String, required: true}
+	name: {type: String},
+	email: {type: String},
+	password: {type: String},
+	// role: {type: String, enum: ["admin", "employee"]},
+	location: {type: String}
 });
 
 //pre('save') is mongoose middleware that runs before every user is created
