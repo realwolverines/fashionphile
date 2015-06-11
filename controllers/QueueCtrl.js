@@ -16,7 +16,7 @@ module.exports = {
   },
 
   list: function(req, res){
-    Customer.
+    Customer
       .find({}, function(err, customers){
         if(err) {
           res.status(500).end(); 
@@ -35,7 +35,7 @@ module.exports = {
         return res.status(200).json(result); 
       }); 
   },
-  
+
   update: function(req, res){
     Customer 
       .findByIdAndUpdate(req.params.customerId, {status: req.body.status})
@@ -44,6 +44,5 @@ module.exports = {
         if(err) return res.status(500).end(); 
         return res.status(200).json(result); 
       })
-      .
   }
 }

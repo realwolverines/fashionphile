@@ -24,9 +24,6 @@ var User = require('./models/User');
 var Location = require('./models/Location');
 var Customer = require('./models/Customer');
 
-//Configuration Files for Passport
-var configAuth = require('./config/auth');
-
 //Auth -- Local Strategy
 passport.use(new LocalStrategy({
 	usernameField: 'email'
