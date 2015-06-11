@@ -5,8 +5,8 @@ var Schema = mongoose.Schema;
 var  customerModel = new Schema({
   name: String,
   joined: {type: Date, default: Date.now},
-  status: {type: String, enum: [pending, done]},
+  status: {type: String, enum: [pending, done], default: pending},
   helpedAt: {type: Date}
 });
 
-module.exports = mongoose.model('Customer', customerModel); 
+module.exports = mongoose.model('Customer', customerModel);
