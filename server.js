@@ -111,7 +111,7 @@ app.get('/api/auth/logout', function(req, res){
 })
 
 /* End of Auth Endpoints ****************************************************/
-app.post('/api/queue/', requireAuth, QueueCtrl.add); 
+app.post('/api/queue/', QueueCtrl.add); 
 
 //Database Connection 
 mongoose.connect('mongodb://localhost/fashionphile');
