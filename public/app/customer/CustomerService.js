@@ -33,14 +33,6 @@ app.service('CustomerService', function($q, $http){
       return dfd.promise;
     }
 
-  // this.update = function(customer){
-  //   var dfd = $q.defer(); 
-  //     $http({
-  //       method: 'PUT', 
-  //       url: 'http://localholst:8080/api/queue'
-  //     })
-  // }
-
-  })
+  }) /* End of Service logic */
   
 });

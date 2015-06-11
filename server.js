@@ -83,8 +83,8 @@ app.get('/api/auth/logout', function(req, res){
 
 /* Endpoints 
 **********************************************************************/
-app.post('/api/queue/', QueueCtrl.add); 
-app.get('/api/queue/', QueueCtrl.getByLocation); 
+app.post('/api/:location/queue/', QueueCtrl.add); 
+app.get('/api/:location/queue/', QueueCtrl.getByLocation); 
 
 //Database Connection 
 mongoose.connect('mongodb://localhost/fashionphile');

@@ -17,7 +17,7 @@ module.exports = {
 
   getByLocation: function(req, res){
     Customer
-      .find({location: user.location}, function(err, customers){
+      .find({location: }, function(err, customers){
         if(err) res.status(500).end(); 
         res.json(customers); 
       })
