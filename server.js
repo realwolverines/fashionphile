@@ -18,6 +18,7 @@ app.use(passport.session());
 
 //Controllers 
 var QueueCtrl = require('./controllers/QueueCtrl');
+var UserCtrl = require('./controllers/UserCtrl');
 
 //Models
 var User = require('./models/User');
@@ -65,41 +66,9 @@ var requireAuth = function(req, res, next){
 	next();
 }
 
-//TODO: Figure out how to access admin role from user model
-// var requireAdmin = function(req, res, next){
-//   if(!req.user.role === "admin"){
-//     return res.status(401).end();
-//   }
-//   console.log(req.user); 
-//   next(); 
-// }
-
 //Auth Endpoints 
 //Sign Up && Add User 
-app.post('/api/users', function(req, res) {
-	console.log("create users api hit"); 
-	User.findOne({ email: req.body.email })
-    .exec()
-    .then(function(user) {
-  		//if we found a user, it's a duplicate
-  		if (user) {
-  			return res.status(400).json({message: "User with this email already exists."});
-  		}
-  		//if the user's password is too short ...
-  		if (req.body.password.length <= 4) {
-  			return res.status(400).json({message: "Your password must be longer than 4 characters."});
-  		}
-  		//otherwise, create the user
-  		var user = new User(req.body);
-      console.log("creating new user"); 
-  		user.save(function(err, new_user) {
-  			if (err) {
-  				console.log("can't create user", err);
-  			}
-  			res.json(new_user);
-  		})
-	  })
-});
+app.post('/api/users/', UserCtrl.createUser);
 
 //Local Login Endpoint
 app.post('/api/users/auth', passport.authenticate('local', { failureRedirect: '/login' }), function(req, res) {
@@ -108,12 +77,14 @@ app.post('/api/users/auth', passport.authenticate('local', { failureRedirect: '/
 
 //logout
 app.get('/api/auth/logout', function(req, res){
-	req.logout(); 
-	return res.status(200).json({message: "Logged Out"}).end(); 
+	req.logout();
+	return res.status(200).json({message: "Logged Out"}).end();
 })
 
-/* End of Auth Endpoints ****************************************************/
+/* Endpoints 
+**********************************************************************/
 app.post('/api/queue/', QueueCtrl.add); 
+app.get('/api/queue/', QueueCtrl.getByLocation); 
 
 //Database Connection 
 mongoose.connect('mongodb://localhost/fashionphile');
