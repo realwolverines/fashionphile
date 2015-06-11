@@ -43,4 +43,4 @@ app.service('CustomerService', function($q, $http){
 
   })
   
-});
+})();
