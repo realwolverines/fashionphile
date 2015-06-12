@@ -3,8 +3,7 @@
 
 var app = angular.module('fashionphile');
 
-app.controller('LoginService', function(){
-
+app.service('LoginService', function($q, $http){
   this.login = function(user){
     var dfd = $q.defer()
       $http({
@@ -15,20 +14,7 @@ app.controller('LoginService', function(){
       .then(function(res){
         dfd.resolve(res);
       }); 
-    return dfd.resolve; 
-  }
-
-  this.signup = function(user) {
-    var dfd = $q.defer()
-      $http({
-        method: 'POST',
-        url: '/api/users',
-        data: user
-      })
-      .then(function(res){
-        dfd.resolve(res);
-      });
-    return dfd.resolve;
+    return dfd.promise; 
   }
 
 });
