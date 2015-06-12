@@ -71,12 +71,9 @@ var requireAuth = function(req, res, next){
 app.post('/api/users/', UserCtrl.createUser);
 
 //Local Login Endpoint
-<<<<<<< HEAD
-app.post('/api/users/auth', passport.authenticate('local', { failureRedirect: '/' }), function(req, res) {
-=======
+
 app.post('/api/users/auth', passport.authenticate('local', { 
 	failureRedirect: '/' }), function(req, res) {
->>>>>>> 090941e5f0ad6688cf86bf3adffd712a7e256dd5
 	return res.json({message: "you logged in"});
 });
 

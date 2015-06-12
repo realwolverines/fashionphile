@@ -1,4 +1,8 @@
 
+  var app = angular.module('fashionphile');
+
+  app.service('CustomerService', function($q, $http){
+
   this.addCustomer = function(customer, location){
     var dfd = $q.defer(); 
         $http({
@@ -17,6 +21,5 @@
       return dfd.promise;
     }
 
-  }) /* End of Service logic */
+}) /* End of Service logic */
   
-});

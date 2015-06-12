@@ -14,4 +14,4 @@ app.controller('CustomerCtrl', function($scope, $q, $http, CustomerService, $rou
 
 }) //End Controller 
 
-})(); //End IFFE
+
