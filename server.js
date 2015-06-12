@@ -66,12 +66,13 @@ var requireAuth = function(req, res, next){
 	next();
 }
 
-//Auth Endpoints 
+// Auth Endpoints --------------------------------
 //Sign Up && Add User 
 app.post('/api/users/', UserCtrl.createUser);
 
 //Local Login Endpoint
-app.post('/api/users/auth', passport.authenticate('local', { failureRedirect: '/login' }), function(req, res) {
+app.post('/api/users/auth', passport.authenticate('local', { 
+	failureRedirect: '/' }), function(req, res) {
 	return res.json({message: "you logged in"});
 });
 
