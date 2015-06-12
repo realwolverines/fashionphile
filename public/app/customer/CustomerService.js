@@ -4,11 +4,11 @@
 var app = angular.module('fashionphile');
 
 app.service('CustomerService', function($q, $http){
-  this.getCustomers = function(){
+  this.getCustomers = function(location){
     var dfd = $q.defer(); 
       $http({
         method: 'GET', 
-        url: 'http://localhost:8080/api/queue'
+        url: 'http://localhost:8080/api/'+location+'/queue'
       })
       .then(function(res){
         dfd.resolve(res); 
@@ -16,15 +16,16 @@ app.service('CustomerService', function($q, $http){
     return dfd.promise; 
   },
 
-  this.addCustomer = function(customer){
+  this.addCustomer = function(customer, location){
     var dfd = $q.defer(); 
         $http({
           method: 'POST'
-          url: 'http://localhost:8080/api/queue',
+          url: 'http://localhost:8080/api/'+location+'/queue',
           data: {
             "name": $scope.name, 
-            "status": "pending"
-            "joined": Date.now
+            "status": "pending",
+            "joined": Date.now,
+            "location": location
           }
         })
         .then(function(res){

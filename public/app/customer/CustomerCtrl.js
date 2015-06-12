@@ -9,9 +9,10 @@ app.controller('CustomerCtrl', function($scope, $q, $http, CustomerService){
 //   CustomerService.getCustomers(); 
 // }; 
 
-$scope.addCustomer = function($scope.name){
+$scope.addCustomer = function($scope.name, $routeParams){
+  CustomerService.addCustomer($scope.name, $routeParams); 
   console.log(customer); 
-  // CustomerService.getCustomers(); 
+  CustomerService.getCustomers(); 
 }
 
 })();
