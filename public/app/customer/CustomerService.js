@@ -3,7 +3,7 @@
 
 var app = angular.module('fashionphile');
 
-app.service('CustomerService', function($q, $http){
+app.service('CustomerService', function($q, $http, $routeParams){
   this.getCustomers = function(location){
     var dfd = $q.defer(); 
       $http({
@@ -22,7 +22,7 @@ app.service('CustomerService', function($q, $http){
           method: 'POST'
           url: 'http://localhost:8080/api/'+location+'/queue',
           data: {
-            "name": $scope.name, 
+            "name": customer.name, 
             "status": "pending",
             "joined": Date.now,
             "location": location

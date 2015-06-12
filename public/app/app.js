@@ -37,14 +37,7 @@ app
       .state('/:location', {
         url: '/:location',
         templateUrl: './wallDisplay/wallDisplayView.html',
-        controller: 'WallDisplayCtrl',
-        resolve: {
-          queue: function(CustomerService){
-            if(res.location === $state.params){
-
-            }
-          }
-        }
+        controller: 'WallDisplayCtrl'
       })
       .state('walldisplay', {
           url: '/walldisplay',

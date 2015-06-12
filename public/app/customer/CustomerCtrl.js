@@ -3,16 +3,16 @@
 
 var app = angular.module('fashionphile');
 
-app.controller('CustomerCtrl', function($scope, $q, $http, CustomerService){
+app.controller('CustomerCtrl', function($scope, $q, $http, CustomerService, $routeParams){
 
 // $scope.getCustomers = function(){
 //   CustomerService.getCustomers(); 
 // }; 
 
-$scope.addCustomer = function($scope.name, $routeParams){
-  CustomerService.addCustomer($scope.name, $routeParams); 
-  console.log(customer); 
-  CustomerService.getCustomers(); 
-}
+  $scope.addCustomer = function($routeParams){
+    console.log($routeParams);     
+  }
 
-})();
+}) //End Controller 
+
+})(); //End IFFE
