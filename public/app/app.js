@@ -38,13 +38,7 @@ app
         url: '/:location',
         templateUrl: './wallDisplay/wallDisplayView.html',
         controller: 'WallDisplayCtrl'
-      })
-      .state('walldisplay', {
-          url: '/walldisplay',
-          templateUrl : 'app/wallDisplay/wallDisplayView.html',
-          controller  : 'WallDisplayCtrl'
       });
-      
-});
+  });
 
 })();
