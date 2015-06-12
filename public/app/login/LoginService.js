@@ -3,7 +3,7 @@
 
 var app = angular.module('fashionphile');
 
-app.controller('LoginService', function(){
+app.service('LoginService', function($http, $q){
 
   this.login = function(user){
     var dfd = $q.defer()

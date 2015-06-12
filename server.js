@@ -76,7 +76,7 @@ app.post('/api/users/auth', passport.authenticate('local', { failureRedirect: '/
 });
 
 //logout
-app.get('/api/auth/logout', function(req, res){
+app.post('/api/auth/logout', function(req, res){
 	req.logout();
 	return res.status(200).json({message: "Logged Out"}).end();
 })
@@ -84,7 +84,9 @@ app.get('/api/auth/logout', function(req, res){
 /* Endpoints 
 **********************************************************************/
 app.post('/api/:location/queue/', QueueCtrl.add); 
-app.get('/api/:location/queue/', QueueCtrl.getByLocation); 
+app.get('api/:location/queue/', QueueCtrl.getByLocation);
+
+// app.post('api/scraper', ScraperCtrl.saveScrape); 
 
 //Database Connection 
 mongoose.connect('mongodb://localhost/fashionphile');
