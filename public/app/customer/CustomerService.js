@@ -19,7 +19,7 @@ app.service('CustomerService', function($q, $http, $routeParams){
   this.addCustomer = function(customer, location){
     var dfd = $q.defer(); 
         $http({
-          method: 'POST'
+          method: 'POST',
           url: 'http://localhost:8080/api/'+location+'/queue',
           data: {
             "name": customer.name, 

@@ -3,7 +3,7 @@
 
 var app = angular.module('fashionphile');
 
-app.controller('WallDisplayCtrl', function(){
+app.controller('WallDisplayCtrl', function($scope){
 
 
 

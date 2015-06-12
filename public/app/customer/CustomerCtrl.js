@@ -10,7 +10,7 @@ app.controller('CustomerCtrl', function($scope, $q, $http, CustomerService, $rou
 // }; 
 
   $scope.addCustomer = function($routeParams){
-    console.log($routeParams);     
+    console.log($routeParams);
   }
 
 }) //End Controller 
