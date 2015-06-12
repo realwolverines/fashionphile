@@ -1,5 +1,4 @@
-(function(){
-  'use strict';
+
 
 var app = angular.module('fashionphile');
 
@@ -14,9 +13,8 @@ app.service('LoginService', function($q, $http){
       .then(function(res){
         dfd.resolve(res);
       }); 
+    console.log("Logged in ", user); 
     return dfd.promise; 
   }
 
 });
-
-})();//end
