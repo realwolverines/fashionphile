@@ -3,8 +3,8 @@
 var app = angular.module('fashionphile');
 
 app.controller('LoginCtrl', function($scope, $location, LoginService){
-$scope.login = function() {
-   LoginService.login($scope.email, $scope.password)
+$scope.login = function(user) {
+   LoginService.login(user.email, user.password)
    .then(function() {
      console.log("Logged in!"); 
      $location.path('/selection');

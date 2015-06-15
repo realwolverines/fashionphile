@@ -25,25 +25,33 @@ var User = require('./models/User');
 var Location = require('./models/Location');
 var Customer = require('./models/Customer');
 
-//Auth -- Local Strategy
-passport.use(new LocalStrategy({
-	usernameField: 'email'
-}, function(email, password, done) {
-	//define how we match user credentials to db values
-	User.findOne({ email: email }, function(err, user){
-		if (!user) {
-			done(new Error("This user does not exist"));
-		}
-		user.verifyPassword(password).then(function(doesMatch) {
-			if (doesMatch) {
-				done(null, user);
-			}
-			else {
-				done(new Error("Please verify your password and try again."));
-			}
-		});
-	});
-}));
+
+// User
+passport.use('local', new LocalStrategy({
+        // by default, local strategy uses username and password, we will override with email
+        usernameField : 'email',
+        passwordField : 'password',
+        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+    },
+    function(req, email, password, done) {
+
+        // asynchronous
+        process.nextTick(function() {
+            User.findOne({ 'email' :  email }, function(err, user) {
+                // if there are any errors, return the error
+                if (err) return done(err);
+
+                // if no user is found, return the message
+                if (!user) return done(('No user found.'));
+                // password is incorrect
+                user.verifyPassword(password).then(function(doesMatch){
+        		if(doesMatch) done(null, user);
+        		else done(('Incorrect Password'))
+                	})
+            })
+        });
+
+    }));
 
 //Middleware for Passport
 passport.serializeUser(function(user, done) {
@@ -72,8 +80,7 @@ app.post('/api/users/', UserCtrl.createUser);
 
 //Local Login Endpoint
 
-app.post('/api/users/auth', passport.authenticate('local', { 
-	failureRedirect: '/' }), function(req, res) {
+app.post('/api/users/auth', passport.authenticate('local'), function(req, res) {
 	return res.json({message: "you logged in"});
 });
 
@@ -85,6 +92,11 @@ app.post('/api/auth/logout', function(req, res){
 
 /* Endpoints 
 **********************************************************************/
+app.get('/selection', passport.authenticate('local'), function(req, res) {
+    res.redirect(request.session.returnTo || '/selection');
+});
+
+
 app.post('/api/:location/queue/', QueueCtrl.add); 
 app.get('api/:location/queue/', QueueCtrl.getByLocation);
 
