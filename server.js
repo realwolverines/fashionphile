@@ -6,12 +6,14 @@ var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
 var mongoose = require('mongoose');
 var bson = require('bson');
+var cookieParser = require('cookie-parser'); 
 var app = express();
 
 //Middleware
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(__dirname+"/public"));
+app.use(cookieParser());
 app.use(session({
     secret: 'wolverinePack', 
     resave: false,
@@ -81,9 +83,9 @@ var requireAuth = function(req, res, next){
 app.post('/api/users/', UserCtrl.createUser);
 
 //Local Login Endpoint
-
 app.post('/api/users/auth', passport.authenticate('local'), function(req, res) {
-	return res.json({message: "you logged in"});
+    console.log(req.user); 
+	return res.json(req.user);
 });
 
 //logout
@@ -97,7 +99,6 @@ app.post('/api/auth/logout', function(req, res){
 app.get('/selection', passport.authenticate('local'), function(req, res) {
     res.redirect(request.session.returnTo || '/selection');
 });
-
 
 app.post('/api/:location/queue/', QueueCtrl.add); 
 app.get('api/:location/queue/', QueueCtrl.getByLocation);
