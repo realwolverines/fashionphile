@@ -1,15 +1,18 @@
-var app = angular.module('fashionphile'); 
+var app = angular.module('fashionphile');
 
-app.service('SelectionService', function($q, $http) {
-  this.getLocations = function(locationId){
-    var dfd = $q.defer(); 
+app.service('SelectionService', function($q, $http){
+
+  this.getLocations = function(){
+    var deferred = $q.defer()
       $http({
-        method: 'GET', 
-        url: '/api/location/' + locationId, 
-      }).then(function(res){
-        console.log(res); 
-        dfd.resolve(res); 
-      })
-    return dfd.promise; 
+        method: 'GET',
+        url: '/api/location'
+    }).then(function(res) {
+      deferred.resolve(res.data);
+    }).catch(function(res) {
+      deferred.reject(res.data);
+    });
+    return deferred.promise;
   }
-})
+
+}); 
