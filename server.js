@@ -54,31 +54,24 @@ app.use(session({
 
 //local login
 
-passport.use('local', new LocalStrategy({
-        // by default, local strategy uses username and password, we will override with email
-        usernameField : 'email',
-        passwordField : 'password',
-        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-    },
-    function(req, email, password, done) {
-
-        // asynchronous
-        process.nextTick(function() {
-            User.findOne({ 'email' :  email }, function(err, user) {
-                // if there are any errors, return the error
-                if (err) return done(err);
-
-                // if no user is found, return the message
-                if (!user) return done(('No user found.'));
-                // password is incorrect
-                user.verifyPassword(password).then(function(doesMatch){
-                if(doesMatch) done(null, user);
-                else done(('Incorrect Password'))
-                    })
-            })
+passport.use(new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password'
+}, function(username, password, done) {
+    User.findOne({ email: username }).exec().then(function(user) {
+        if (!user) {
+            return done(null, false);
+            console.log('no user');
+        }
+        user.comparePassword(password).then(function(isMatch) {
+            if (!isMatch) {
+                console.log('no match');
+                return done(null, false);
+            }
+            return done(null, user);
         });
-
-    }));
+    });
+}));
 
 //add passport initialize and session middleware
 
@@ -120,7 +113,7 @@ app.post('/api/users/auth', passport.authenticate('local'), function(req, res) {
 
 /* Endpoints 
 **********************************************************************/
-app.get('/selection', passport.authenticate('local'), function(req, res) {
+app.get('/selection', passport.authenticate('local'), requireAuth, function(req, res) {
     res.redirect(request.session.returnTo || '/selection');
 });
 
