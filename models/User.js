@@ -11,27 +11,31 @@ var userSchema = new Schema({
 	location: {type: String}
 });
 
-//pre('save') is mongoose middleware that runs before every user is created
 userSchema.pre('save', function(next) {
 	var user = this;
-	//take password and encrypt it
+	if (!user.isModified('password')) {
+		return next();
+	}
 	bcrypt.genSalt(10, function(err, salt) {
+		if (err) {
+			return next(err);
+		}
 		bcrypt.hash(user.password, salt, function(err, hash) {
-			console.log(hash);
 			user.password = hash;
-			next();
+			return next();
 		});
 	});
 });
 
-userSchema.methods.verifyPassword = function(password) {
+userSchema.methods.comparePassword = function(pass) {
 	var deferred = q.defer();
-	var user = this;
-	bcrypt.compare(password, user.password, function(err, res) {
+	bcrypt.compare(pass, this.password, function(err, isMatch) {
 		if (err) {
-			deferred.resolve(false);
+			deferred.reject(err);
 		}
-		deferred.resolve(true);
+		else {
+			deferred.resolve(isMatch);
+		}
 	});
 	return deferred.promise;
 };
