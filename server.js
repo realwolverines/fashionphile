@@ -54,6 +54,7 @@ app.use(session({
 
 //local login
 
+<<<<<<< HEAD
 // User
 passport.use('local', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
@@ -76,9 +77,26 @@ passport.use('local', new LocalStrategy({
                 else done(('Incorrect Password'))
                 })
             })
+=======
+passport.use(new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password'
+}, function(username, password, done) {
+    User.findOne({ email: username }).exec().then(function(user) {
+        if (!user) {
+            return done(null, false);
+            console.log('no user');
+        }
+        user.comparePassword(password).then(function(isMatch) {
+            if (!isMatch) {
+                console.log('no match');
+                return done(null, false);
+            }
+            return done(null, user);
+>>>>>>> 491349884242d4218e2d041c993af3e02a0ee235
         });
-
-    }));
+    });
+}));
 
 
 //add passport initialize and session middleware
@@ -121,7 +139,7 @@ app.post('/api/users/auth', passport.authenticate('local'), function(req, res) {
 
 /* Endpoints 
 **********************************************************************/
-app.get('/selection', passport.authenticate('local'), function(req, res) {
+app.get('/selection', passport.authenticate('local'), requireAuth, function(req, res) {
     res.redirect(request.session.returnTo || '/selection');
 });
 
