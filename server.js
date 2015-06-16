@@ -12,8 +12,11 @@ var app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(__dirname+"/public"));
+app.use(session({
+    secret: 'wolverinePack', 
+    resave: false,
+    saveUninitialized: true }));
 app.use(passport.initialize());
-app.use(session({secret: 'wolverinePack'}));
 app.use(passport.session());
 
 //Controllers 
@@ -24,7 +27,6 @@ var UserCtrl = require('./controllers/UserCtrl');
 var User = require('./models/User');
 var Location = require('./models/Location');
 var Customer = require('./models/Customer');
-
 
 // User
 passport.use('local', new LocalStrategy({
