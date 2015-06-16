@@ -9,8 +9,20 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bson = require('bson');
+var cookieParser = require('cookie-parser'); 
 var app = express();
 
+//Middleware
+app.use(cors());
+app.use(bodyParser.json());
+app.use(express.static(__dirname+"/public"));
+app.use(cookieParser());
+app.use(session({
+    secret: 'wolverinePack', 
+    resave: false,
+    saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Controllers 
 var QueueCtrl = require('./controllers/QueueCtrl');
@@ -120,8 +132,6 @@ app.get('/selection', passport.authenticate('local'), requireAuth, function(req,
 app.get('/api/location', requireAuth, LocationCtrl.list);
 app.get('/api/location/:id', requireAuth, LocationCtrl.listOne);
 app.post('/api/location', requireAuth, LocationCtrl.create);
-
-
 
 
 

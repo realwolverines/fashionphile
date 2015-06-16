@@ -1,6 +1,7 @@
 var Location = require('../models/Location.js'); 
 
 module.exports = {
+
   list: function(req, res) {
     Location.find({ user: req.user._id }).select('_id name').exec().then(function(locations) {
       return res.json(locations);
