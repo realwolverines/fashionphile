@@ -54,6 +54,7 @@ app.use(session({
 
 //local login
 
+// User
 passport.use('local', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
@@ -79,6 +80,7 @@ passport.use('local', new LocalStrategy({
         });
 
     }));
+
 
 //add passport initialize and session middleware
 
@@ -124,7 +126,6 @@ app.get('/selection', passport.authenticate('local'), function(req, res) {
     res.redirect(request.session.returnTo || '/selection');
 });
 
-app.get('/api/location', requireAuth, LocationCtrl.list);
 app.get('/api/location/:id', requireAuth, LocationCtrl.listOne);
 app.post('/api/location', requireAuth, LocationCtrl.create);
 
