@@ -2,8 +2,7 @@
 var app = angular.module('fashionphile');
 
 
-app.controller('CustomerCtrl', function($scope, $q, $http, CustomerService, $routeParams){
-
+app.controller('CustomerCtrl', function($scope, $stateParams){
 // $scope.getCustomers = function(){
 //   CustomerService.getCustomers(); 
 // }; 

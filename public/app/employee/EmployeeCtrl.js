@@ -3,8 +3,7 @@
 
 var app = angular.module('fashionphile');
 
-app.controller('EmployeeCtrl', function(){
-
+app.controller('EmployeeCtrl', function($scope, $stateParams){
 
 
 });

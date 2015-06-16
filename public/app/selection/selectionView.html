@@ -7,22 +7,18 @@
 	<div class="">
     <h2 class='text-center'>Please Select Location</h2>
     <select multiple class='form-control text-center' ng-model="store.id">
-        <option value="Beverly-Hills">Beverly Hills</option>
-        <option value="San-Francisco">San Francisco</option>
-        <option value="San-Diego">San Diego</option>
+        <option ng-repeat="store in locations"><a>{{store.name}}</a></option>
     </select>
-    {{ store.id }}
 	</div>
 
 
 <div class="">
 <h2 class='text-center'>Customer or Employee</h2>
 <select multiple class='form-control text-center' ng-model="view.id">
-  <option value="customerView">Customer</option>
-  <option value="San-Francisco">Employee</option>
+  <option value="Customer View">Customer</option>
+  <option value="Employee View">Employee</option>
 </select>
 
-{{ view.id }}
 
 </div>
 

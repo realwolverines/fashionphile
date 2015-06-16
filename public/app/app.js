@@ -34,11 +34,7 @@ app
           templateUrl : 'app/stats/statsView.html',
           controller  : 'StatsCtrl'
       })
-      .state('/:location', {
-        url: '/:location',
-        templateUrl: './wallDisplay/wallDisplayView.html',
-        controller: 'WallDisplayCtrl'
-      });
+
   });
 
 })();
