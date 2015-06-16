@@ -68,14 +68,13 @@ passport.use('local', new LocalStrategy({
             User.findOne({ 'email' :  email }, function(err, user) {
                 // if there are any errors, return the error
                 if (err) return done(err);
-
                 // if no user is found, return the message
                 if (!user) return done(('No user found.'));
                 // password is incorrect
                 user.verifyPassword(password).then(function(doesMatch){
                 if(doesMatch) done(null, user);
                 else done(('Incorrect Password'))
-                    })
+                })
             })
         });
 
@@ -126,6 +125,7 @@ app.get('/selection', passport.authenticate('local'), function(req, res) {
     res.redirect(request.session.returnTo || '/selection');
 });
 
+app.get('/api/location', requireAuth, LocationCtrl.list);
 app.get('/api/location/:id', requireAuth, LocationCtrl.listOne);
 app.post('/api/location', requireAuth, LocationCtrl.create);
 
