@@ -4,7 +4,9 @@ var Schema = mongoose.Schema;
 
 var  locationSchema = new Schema({
   name: String,
-  customers: [{type: Schema.Types.ObjectId, ref: 'Customers'}]
+  user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+  date: { type: Date, default: Date.now },
+	active: { type: Boolean, default: true }
 });
 
 module.exports = mongoose.model('Location', locationSchema); 

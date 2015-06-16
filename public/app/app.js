@@ -17,7 +17,18 @@ app
       .state('selection', {
       		url: '/selection',
           templateUrl : 'app/selection/selectionView.html',
-          controller  : 'SelectionCtrl'
+          controller  : 'SelectionCtrl',
+          resolve: {
+            locations: function($q, SelectionService) {
+              var deferred = $q.defer();
+                  SelectionService.getLocations()
+                    .then(function(locations) {
+                      console.log(locations);
+                      deferred.resolve(locations);
+                  });
+                  return deferred.promise;
+              }
+            }
       })
       .state('customer', {
           url: '/customer',
