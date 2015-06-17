@@ -9,8 +9,20 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bson = require('bson');
+var cookieParser = require('cookie-parser'); 
 var app = express();
 
+//Middleware
+app.use(cors());
+app.use(bodyParser.json());
+app.use(express.static(__dirname+"/public"));
+app.use(cookieParser());
+app.use(session({
+    secret: 'wolverinePack', 
+    resave: false,
+    saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Controllers 
 var QueueCtrl = require('./controllers/QueueCtrl');
@@ -54,30 +66,6 @@ app.use(session({
 
 //local login
 
-<<<<<<< HEAD
-// User
-passport.use('local', new LocalStrategy({
-        // by default, local strategy uses username and password, we will override with email
-        usernameField : 'email',
-        passwordField : 'password',
-        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-    },
-    function(req, email, password, done) {
-
-        // asynchronous
-        process.nextTick(function() {
-            User.findOne({ 'email' :  email }, function(err, user) {
-                // if there are any errors, return the error
-                if (err) return done(err);
-                // if no user is found, return the message
-                if (!user) return done(('No user found.'));
-                // password is incorrect
-                user.verifyPassword(password).then(function(doesMatch){
-                if(doesMatch) done(null, user);
-                else done(('Incorrect Password'))
-                })
-            })
-=======
 passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
@@ -93,11 +81,9 @@ passport.use(new LocalStrategy({
                 return done(null, false);
             }
             return done(null, user);
->>>>>>> 491349884242d4218e2d041c993af3e02a0ee235
         });
     });
 }));
-
 
 //add passport initialize and session middleware
 
@@ -146,6 +132,19 @@ app.get('/selection', passport.authenticate('local'), requireAuth, function(req,
 app.get('/api/location', requireAuth, LocationCtrl.list);
 app.get('/api/location/:id', requireAuth, LocationCtrl.listOne);
 app.post('/api/location', requireAuth, LocationCtrl.create);
+app.delete('/api/location/:id', requireAuth, LocationCtrl.delete);
+app.put('/api/location/:id', requireAuth, LocationCtrl.update);
+
+
+
+
+
+
+
+
+
+
+
 
 
 

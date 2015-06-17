@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-var app = angular.module('fashionphile', [ 'ui.router', 'ngRoute']);
+var app = angular.module('fashionphile', [ 'ui.router', 'editer']);
 
 //config
 app
