@@ -1,5 +1,4 @@
 //definititions and requires
-
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -9,7 +8,6 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bson = require('bson');
-var cookieParser = require('cookie-parser'); 
 var app = express();
 
 //Middleware
@@ -34,11 +32,8 @@ var User = require('./models/User');
 var Location = require('./models/Location');
 var Customer = require('./models/Customer');
 
-//database
+//Database
 var mongoUri = "mongodb://localhost:27017/fashionphile";
-
-//initializing mongoose
-
 mongoose.connect(mongoUri);
 mongoose.connection.once('open', function() {
     console.log("Connected to db at " + mongoUri);
@@ -50,26 +45,15 @@ app.listen(process.env.EXPRESS_PORT || port, function(){
     console.log("The Wolverine Pack is hunting on port ", port); 
 });
 
-//bodyParser
-
-app.use(bodyParser.json());
-// app.use(cookieParser());
-
 //static 
-
 app.use(express.static(__dirname+'/public'));
 
-//add session secret
-app.use(session({
-    secret: 'aladhflkjadhlkjafd'
-}))
-
 //local login
-
 passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
 }, function(username, password, done) {
+    console.log(username, password)
     User.findOne({ email: username }).exec().then(function(user) {
         if (!user) {
             return done(null, false);
@@ -85,13 +69,7 @@ passport.use(new LocalStrategy({
     });
 }));
 
-//add passport initialize and session middleware
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 //authorization check
-
 var requireAuth = function(req, res, next) {
     if (!req.isAuthenticated()) {
         return res.status(403).end();
@@ -100,7 +78,6 @@ var requireAuth = function(req, res, next) {
 }
 
 //deserializer
-
 passport.serializeUser(function(user, done) {
   done(null, user._id);
 });
@@ -111,22 +88,13 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-
-//Sign Up && Add User 
+/* Endpoints 
+**********************************************************************/
+//Auth
 app.post('/api/users/', UserCtrl.createUser);
-
-//post local user
-
 app.post('/api/users/auth', passport.authenticate('local'), function(req, res) {
     //if auth was successful, this will happen
     return res.status(200).end();
-});
-
-
-/* Endpoints 
-**********************************************************************/
-app.get('/selection', passport.authenticate('local'), requireAuth, function(req, res) {
-    res.redirect(request.session.returnTo || '/selection');
 });
 
 app.get('/api/location', requireAuth, LocationCtrl.list);
@@ -146,6 +114,6 @@ app.put('/api/location/:id', requireAuth, LocationCtrl.update);
 
 
 
-
-
-
+app.post('/api/customer/', QueueCtrl.add);
+app.get('/api/customer/', QueueCtrl.getByLocation); 
+// app.put('/api/customer', QueueCtrl.updateCustomer)

@@ -31,14 +31,32 @@ app
             }
       })
       .state('customer', {
-          url: '/customer',
+          url: '/customer/:id',
           templateUrl : 'app/customer/customerView.html',
-          controller  : 'CustomerCtrl'
+          controller  : 'CustomerCtrl',
+          resolve: {
+            customerData: function($q, SelectionService) {
+              var deferred = $q.defer();
+                  SelectionService.getLocations()
+                    .then(function(locations) {
+                      console.log(locations);
+                      deferred.resolve(locations);
+                  });
+                  return deferred.promise;
+              }
+          }
       })
       .state('employee', {
-          url: '/employee',
+          url: '/employee/:location',
           templateUrl : 'app/employee/employeeView.html',
-          controller  : 'EmployeeCtrl'
+          controller  : 'EmployeeCtrl',
+          resolve: {
+            customers: function($state, $stateParams, CustomerService){
+              var location = $state.params.id; 
+              CustomerService.getCustomers(location); 
+              $scope.customers = customers; 
+            }
+          }
       })
       .state('stats', {
           url: '/stats',

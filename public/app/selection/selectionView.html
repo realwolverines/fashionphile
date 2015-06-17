@@ -48,7 +48,6 @@
     <select multiple class='form-control text-center' ng-model="location.name" ng-options="location._id as location.name for location in locations" ng-change="getLocations(locationId)">
     </select>
 
-
 <div class="">
 <h2 class='text-center'>Customer or Employee</h2>
 <select multiple class='form-control text-center' ng-model="view.id">
@@ -59,6 +58,5 @@
 
 </div>
 
-<button type="submit" class="btn btn-default selection">Submit</button>	
+<button type="submit" ng-click="goToPage(location.name, view.id)" class="btn btn-default selection">Submit</button>
 </div>
-

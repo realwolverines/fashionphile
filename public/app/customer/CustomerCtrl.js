@@ -1,16 +1,14 @@
-
 var app = angular.module('fashionphile');
 
+app.controller('CustomerCtrl', function($scope, $stateParams, $state, CustomerService){
+  console.log("params id is ", $state.params.id);
 
-app.controller('CustomerCtrl', function($scope, $stateParams){
-// $scope.getCustomers = function(){
-//   CustomerService.getCustomers(); 
-// }; 
-
-  $scope.addCustomer = function($routeParams){
-    console.log($routeParams);
+  $scope.addCustomer = function(customer, location){
+    var location = $state.params.id;
+    CustomerService.addCustomer(customer, location);
+    $scope.customer = {}; 
   }
 
-}) //End Controller 
+})
 
 

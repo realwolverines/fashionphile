@@ -3,9 +3,19 @@
 
 var app = angular.module('fashionphile');
 
+app.controller('SelectionCtrl', function($scope, locations, $window, SelectionService, $location){
 
-app.controller('SelectionCtrl', function($scope, locations, $window, SelectionService){
-	
+  $scope.goToPage = function(locationId, viewId){
+    var location = locationId[0].toString().replace(/[' ]/g, '').toLowerCase();
+     var view = viewId[0].toString().replace(/[' ]/g, '').toLowerCase();
+    console.log(view); 
+    if(view === "customerview"){
+      $location.path("/customer/" + location);
+    }
+    else{
+      $location.path("/employee/" + location);
+    }
+  }
 
 	$scope.addNew = function(location){
 		SelectionService.addLocation(location)
