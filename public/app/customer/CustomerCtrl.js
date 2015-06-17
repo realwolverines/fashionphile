@@ -5,7 +5,8 @@ app.controller('CustomerCtrl', function($scope, $stateParams, $state, CustomerSe
 
   $scope.addCustomer = function(customer, location){
     var location = $state.params.id;
-    CustomerService.addCustomer(customer,location);
+    CustomerService.addCustomer(customer, location);
+    $scope.customer = {}; 
   }
 
 })

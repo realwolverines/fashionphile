@@ -10,7 +10,7 @@
           url: '/api/customer/',
           data: {
             "name": customer.name,
-            "email": customer.email,  
+            "email": customer.email,
             "status": "pending",
             "joined": Date.now,
             "location": location
