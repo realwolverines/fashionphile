@@ -1,5 +1,3 @@
-
-
 var app = angular.module('fashionphile');
 
 app.service('LoginService', function($q, $http){

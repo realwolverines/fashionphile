@@ -100,6 +100,19 @@ app.post('/api/users/auth', passport.authenticate('local'), function(req, res) {
 app.get('/api/location', requireAuth, LocationCtrl.list);
 app.get('/api/location/:id', requireAuth, LocationCtrl.listOne);
 app.post('/api/location', requireAuth, LocationCtrl.create);
+app.delete('/api/location/:id', requireAuth, LocationCtrl.delete);
+app.put('/api/location/:id', requireAuth, LocationCtrl.update);
+
+
+
+
+
+
+
+
+
+
+
 
 app.post('/api/customer/', QueueCtrl.add);
 app.get('/api/customer/', QueueCtrl.getByLocation); 

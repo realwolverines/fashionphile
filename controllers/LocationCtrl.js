@@ -37,7 +37,7 @@ module.exports = {
   },
   update: function(req, res) {
     Location
-    .findByIdAndUpdate(req.params.locationId, {name: req.body.name})
+    .findByIdAndUpdate(req.params.id, {name: req.body.name})
     .exec(function(err, result) {
       console.log(result)
       if(err) return res.status(500).end();
@@ -45,8 +45,9 @@ module.exports = {
     });
   },
   delete: function(req, res) {
+    console.log('ssctrl', req);
     Location
-    .findById(req.params.locationId)
+    .findById(req.params.id)
     .remove()
     .exec(function(err, result) {
       console.log(result)

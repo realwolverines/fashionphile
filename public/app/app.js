@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-var app = angular.module('fashionphile', [ 'ui.router', 'ngRoute']);
+var app = angular.module('fashionphile', [ 'ui.router', 'editer']);
 
 //config
 app
@@ -63,11 +63,7 @@ app
           templateUrl : 'app/stats/statsView.html',
           controller  : 'StatsCtrl'
       })
-      .state('/:location', {
-        url: '/:location',
-        templateUrl: './wallDisplay/wallDisplayView.html',
-        controller: 'WallDisplayCtrl'
-      });
+
   });
 
 })();
