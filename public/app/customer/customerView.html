@@ -14,14 +14,14 @@
 <form class='col-xs-8 col-xs-offset-2'>
 	<div class="form-group requireMe">
 
-		<input ng-keyup="$event.keyCode === 13 && addCustomer()" type="text" ng-model="name" class='form-control' placeholder="Type your name to enter queue">
+		<input ng-keyup="$event.keyCode === 13 && addCustomer(customer)" type="text" ng-model="customer.name" class='form-control' placeholder="Type your name to enter queue">
 		
 	</div>
 
 	<div class="form-group">
-		<input type="email" class='form-control' placeholder='email'>
+		<input type="email" class='form-control' placeholder='email' ng-model="customer.email">
 	</div>
-	<button ng-click='addCustomer()' class="btn btn-default col-xs-12">Submit</button>
+	<button ng-click='addCustomer(customer)' class="btn btn-default col-xs-12">Submit</button>
 </form>
 </div>
 

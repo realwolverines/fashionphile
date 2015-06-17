@@ -7,11 +7,6 @@ app.controller('SelectionCtrl', function($scope, locations, $routeParams, $locat
   $scope.locations = locations;
   console.log(locations); 
 
-
-  // $scope.viewSubmit = function(location, view){
-  //   SelectionService.goToPage(location, view); 
-  // };
-
   $scope.goToPage = function(locationId, viewId){
     var location = locationId[0].toString().replace(/[' ]/g, '').toLowerCase();
      var view = viewId[0].toString().replace(/[' ]/g, '').toLowerCase();

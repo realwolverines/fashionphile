@@ -15,17 +15,4 @@ app.service('SelectionService', function($q, $http){
     return deferred.promise;
   }
 
-  // this.goToPage = function(location, view){
-  //   $http({
-  //     method: 'POST', 
-  //     url: '/api/selection', 
-  //     data: {
-  //       "location": location, 
-  //       "view": view
-  //     }
-  //   }).then(function(){
-  //     res.render(location, view); 
-  //   }); 
-  // }
-
 }); 
