@@ -3,8 +3,13 @@ var Location = require('../models/Location.js');
 module.exports = {
 
   list: function(req, res) {
-    Location.find({ user: req.user._id }).select('_id name').exec().then(function(locations) {
-      return res.json(locations);
+    Location
+      .find({ user: req.user._id })
+      .select('_id name')
+      .exec()
+      .then(function(locations) {
+        console.log(locations); 
+        return res.json(locations);
     });
   },  
   listOne: function(req, res) {
@@ -49,4 +54,5 @@ module.exports = {
       return res.status(200).json(result);
     });
   }
+
 }

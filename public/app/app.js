@@ -31,12 +31,23 @@ app
             }
       })
       .state('customer', {
-          url: '/customer',
+          url: '/customer/:id',
           templateUrl : 'app/customer/customerView.html',
-          controller  : 'CustomerCtrl'
+          controller  : 'CustomerCtrl',
+          resolve: {
+            customerData: function($q, SelectionService) {
+              var deferred = $q.defer();
+                  SelectionService.getLocations()
+                    .then(function(locations) {
+                      console.log(locations);
+                      deferred.resolve(locations);
+                  });
+                  return deferred.promise;
+              }
+          }
       })
       .state('employee', {
-          url: '/employee',
+          url: '/employee/:id',
           templateUrl : 'app/employee/employeeView.html',
           controller  : 'EmployeeCtrl'
       })

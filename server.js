@@ -125,13 +125,10 @@ app.post('/api/users/auth', passport.authenticate('local'), function(req, res) {
 
 /* Endpoints 
 **********************************************************************/
-app.get('/selection', passport.authenticate('local'), requireAuth, function(req, res) {
-    res.redirect(request.session.returnTo || '/selection');
-});
-
 app.get('/api/location', requireAuth, LocationCtrl.list);
 app.get('/api/location/:id', requireAuth, LocationCtrl.listOne);
 app.post('/api/location', requireAuth, LocationCtrl.create);
+
 
 
 
