@@ -6,19 +6,56 @@
 
 	<div class="">
     <h2 class='text-center'>Please Select Location</h2>
+
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#editLocation" ng-click="location = {}">
+		Manage Locations
+		</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="editLocation" tabindex="-1" role="dialog" aria-labelledby="editLocation">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="false">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Manage Locations</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<form ng-submit="addNew(location)">
+		        	<input type="name" class="form-control" ng-model="location.name" placeholder="Enter Location">
+		        </form>
+			      <div ng-repeat="location in locations" >
+			      	<!-- location name -->
+		        	<div ng-model="location.name" ng-change="getLocations(locationId)" ng-show="!location.editing" ng-dblclick="startLocationEditing(location)">
+		        	{{location.name}}
+	  					</div>
+	  					<!-- edit location name -->
+	  					<form ng-show="location.editing" ng-submit="doneLocationEditing(location)">
+	  						<input type="text" class="form-control" ng-model="location.name" ng-focus="location == editedItem" />
+								<!-- closing button -->
+	  						<div class="glyphicon glyphicon-remove pull-right" ng-click="deleteStore(location)" style="cursor:pointer; color:red;">
+		           	</div>
+		           </form>
+	  					</div> 
+	    			</div>
+    			</div>
+		      <div class="modal-footer">
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
     <select multiple class='form-control text-center' ng-model="location.name" ng-options="location._id as location.name for location in locations" ng-change="getLocations(locationId)">
     </select>
-	</div>
 
 
 <div class="">
 <h2 class='text-center'>Customer or Employee</h2>
 <select multiple class='form-control text-center' ng-model="view.id">
-  <option value="customerView">Customer</option>
-  <option value="San-Francisco">Employee</option>
+  <option value="Customer View">Customer</option>
+  <option value="Employee View">Employee</option>
 </select>
 
-{{ view.id }}
 
 </div>
 

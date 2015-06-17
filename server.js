@@ -132,6 +132,19 @@ app.get('/selection', passport.authenticate('local'), requireAuth, function(req,
 app.get('/api/location', requireAuth, LocationCtrl.list);
 app.get('/api/location/:id', requireAuth, LocationCtrl.listOne);
 app.post('/api/location', requireAuth, LocationCtrl.create);
+app.delete('/api/location/:id', requireAuth, LocationCtrl.delete);
+app.put('/api/location/:id', requireAuth, LocationCtrl.update);
+
+
+
+
+
+
+
+
+
+
+
 
 
 
