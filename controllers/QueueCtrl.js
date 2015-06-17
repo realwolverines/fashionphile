@@ -17,7 +17,7 @@ module.exports = {
 
   getByLocation: function(req, res){
     Customer
-      .find({}, function(err, customers){
+      .findById({}, function(err, customers){
         if(err) res.status(500).end(); 
         res.json(customers); 
       })
@@ -34,7 +34,7 @@ module.exports = {
   //     });
   // },
 
-  // update: function(req, res){
+  // updateCustomer: function(req, res){
   //   Customer 
   //     .findByIdAndUpdate(req.params.customerId, {status: req.body.status})
   //     .exec(function(err, result) {

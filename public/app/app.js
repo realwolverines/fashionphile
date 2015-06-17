@@ -47,9 +47,16 @@ app
           }
       })
       .state('employee', {
-          url: '/employee/:id',
+          url: '/employee/:location',
           templateUrl : 'app/employee/employeeView.html',
-          controller  : 'EmployeeCtrl'
+          controller  : 'EmployeeCtrl',
+          resolve: {
+            customers: function($state, $stateParams, CustomerService){
+              var location = $state.params.id; 
+              CustomerService.getCustomers(location); 
+              $scope.customers = customers; 
+            }
+          }
       })
       .state('stats', {
           url: '/stats',

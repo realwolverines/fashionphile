@@ -4,10 +4,12 @@ var Schema = mongoose.Schema;
 
 var  customerModel = new Schema({
   name: String,
-  // location: String, 
   joined: {type: Date, default: Date.now},
   status: {type: String, enum: ["pending", "done"], default: "pending"},
-  helpedAt: {type: Date}
+  helpedAt: {type: Date},
+  location: {type: String},
+  email: {type: String},
+  active: {type: Boolean, default: true}
 });
 
 module.exports = mongoose.model('Customer', customerModel);

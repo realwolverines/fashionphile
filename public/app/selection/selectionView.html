@@ -11,13 +11,12 @@
 	</div>
 
 <div class="">
-<h2 class='text-center'>Customer or Employee</h2>
-<select multiple class='form-control text-center' ng-model="view.id">
-  <option value="customerView">Customer</option>
-  <option value="employeeView">Employee</option>
-</select>
-
+  <h2 class='text-center'>Customer or Employee</h2>
+  <select multiple class='form-control text-center' ng-model="view.id">
+    <option value="customerView">Customer</option>
+    <option value="employeeView">Employee</option>
+  </select>
 </div>
 
-<button type="submit" ng-click="goToPage(location.name, view.id)" class="btn btn-default selection">Submit</button>	
+<button type="submit" ng-click="goToPage(location.name, view.id)" class="btn btn-default selection">Submit</button>
 </div>

@@ -88,26 +88,19 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-//Sign Up && Add User 
+/* Endpoints 
+**********************************************************************/
+//Auth
 app.post('/api/users/', UserCtrl.createUser);
-
-//post local user
 app.post('/api/users/auth', passport.authenticate('local'), function(req, res) {
     //if auth was successful, this will happen
     return res.status(200).end();
 });
 
-
-/* Endpoints 
-**********************************************************************/
 app.get('/api/location', requireAuth, LocationCtrl.list);
 app.get('/api/location/:id', requireAuth, LocationCtrl.listOne);
 app.post('/api/location', requireAuth, LocationCtrl.create);
 
-app.post('/api/:location/queue', requireAuth, QueueCtrl.add); 
-// app.get('/api/:location/queue', requireAuth, QueueCtrl.getByLocation); 
-
-
-
-
-
+app.post('/api/customer/', QueueCtrl.add);
+app.get('/api/customer/', QueueCtrl.getByLocation); 
+// app.put('/api/customer', QueueCtrl.updateCustomer)
