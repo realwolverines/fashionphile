@@ -4,7 +4,7 @@
   app.service('CustomerService', function($q, $http, $stateParams, $state){
 
   this.addCustomer = function(customer, location){
-    var dfd = $q.defer(); 
+    var dfd = $q.defer();
         $http({
           method: 'POST',
           url: '/api/customer/',
@@ -17,23 +17,23 @@
           }
         })
         .then(function(res){
-          console.log(res); 
+          console.log(res);
           dfd.resolve(res);
-        }); 
+        });
       return dfd.promise;
     },
 
     this.getCustomers = function(location){
-      var dfd = $q.defer(); 
+      var dfd = $q.defer();
         $http({
-          method: 'GET', 
-          url: '/api/'+location+'/queue'
+          method: 'GET',
+          url: '/api/employee/'+location
         })
         .then(function(customers){
+          console.log(customers); 
           dfd.resolve(customers);
         })
       return dfd.promise; 
     }
 
 }); /* End of Service logic */
-  

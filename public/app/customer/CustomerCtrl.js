@@ -8,6 +8,7 @@ app.controller('CustomerCtrl', function($scope, $stateParams, $state, CustomerSe
       toastr.success('Success!', 'You\'ve been added to the queue')
     });
     $scope.customer = {}; 
+    //TODO: Fire a success modal or popup
   }
 
 })

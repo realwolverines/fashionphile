@@ -19,18 +19,18 @@ module.exports = {
     console.log(req.params.id); 
     Customer 
       .find({status: "pending", location: req.params.id}, function(err, cust){
-        console.log('customers', cust)
+        // console.log('customers', cust);
         res.status(200).send(cust).end(); 
       })
-  }
+  },
 
-  // updateCustomer: function(req, res){
-  //   Customer 
-  //     .findByIdAndUpdate(req.params.customerId, {status: req.body.status})
-  //     .exec(function(err, result) {
-  //       console.log(result); 
-  //       if(err) return res.status(500).end(); 
-  //       return res.status(200).json(result); 
-  //     })
-  // }
+  helpCustomer: function(req, res){
+    Customer 
+      .findByIdAndUpdate(req.params.customerId, {status: req.body.status})
+      .exec(function(err, result) {
+        console.log(result); 
+        if(err) return res.status(500).end(); 
+        return res.status(200).json(result); 
+      })
+  }
 }
