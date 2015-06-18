@@ -72,7 +72,7 @@ passport.use(new LocalStrategy({
 //authorization check
 var requireAuth = function(req, res, next) {
     if (!req.isAuthenticated()) {
-        return res.status(403).end();
+        return res.status(403).send({message: "Logged In"   }).end();
     }
     return next();
 }
@@ -93,7 +93,7 @@ passport.deserializeUser(function(id, done) {
 //Auth
 app.post('/api/users/', UserCtrl.createUser);
 app.post('/api/users/auth', passport.authenticate('local'), function(req, res) {
-    //if auth was successful, this will happen
+    console.log("Logged In"); 
     return res.status(200).end();
 });
 
@@ -103,8 +103,8 @@ app.post('/api/location', requireAuth, LocationCtrl.create);
 app.delete('/api/location/:id', requireAuth, LocationCtrl.delete);
 app.put('/api/location/:id', requireAuth, LocationCtrl.update);
 
-// app.get('/api/:location/queue', requireAuth, QueueCtrl.getByLocation);
+// app.get('/api/employee/:location', QueueCtrl.getByLocation)
 
+//GET by Location :id 
+app.get('/api/employee/:id', QueueCtrl.getByLocation)
 app.post('/api/customer/', QueueCtrl.add);
-app.get('/api/customer/', QueueCtrl.getByLocation); 
-// app.put('/api/customer', QueueCtrl.updateCustomer)
