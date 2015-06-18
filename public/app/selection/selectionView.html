@@ -45,14 +45,14 @@
 		  </div>
 		</div>
 
-    <select multiple class='form-control text-center' ng-model="location.name" ng-options="location._id as location.name for location in locations" ng-change="getLocations(locationId)">
+    <select multiple class='form-control text-center' ng-model="location.name" ng-options="location.name as location.name for location in locations" ng-change="getLocations(locationId)">
     </select>
 
 <div class="">
 <h2 class='text-center'>Customer or Employee</h2>
 <select multiple class='form-control text-center' ng-model="view.id">
-  <option value="Customer View">Customer</option>
-  <option value="Employee View">Employee</option>
+  <option value="Customer">Customer</option>
+  <option value="Employee">Employee</option>
 </select>
 
 

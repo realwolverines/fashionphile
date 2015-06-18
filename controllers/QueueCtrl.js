@@ -17,7 +17,7 @@ module.exports = {
 
   getByLocation: function(req, res){
     Customer
-      .findById({}, function(err, customers){
+      .findById({location: req.body}, function(err, customers){
         if(err) res.status(500).end(); 
         res.json(customers); 
       })

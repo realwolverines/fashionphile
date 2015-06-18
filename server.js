@@ -103,16 +103,7 @@ app.post('/api/location', requireAuth, LocationCtrl.create);
 app.delete('/api/location/:id', requireAuth, LocationCtrl.delete);
 app.put('/api/location/:id', requireAuth, LocationCtrl.update);
 
-
-
-
-
-
-
-
-
-
-
+// app.get('/api/:location/queue', requireAuth, QueueCtrl.getByLocation);
 
 app.post('/api/customer/', QueueCtrl.add);
 app.get('/api/customer/', QueueCtrl.getByLocation); 
