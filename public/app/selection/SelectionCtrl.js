@@ -3,8 +3,7 @@
 
 var app = angular.module('fashionphile');
 
-app.controller('SelectionCtrl', function($scope, locations, $window, SelectionService, $location){
-
+app.controller('SelectionCtrl', function($scope, locations, $window, SelectionService, $location, $state, $stateParams){
   $scope.goToPage = function(locationId, viewId){
     locationId = locationId[0].toString();
     console.log('loc gtp', locationId);
@@ -22,10 +21,9 @@ app.controller('SelectionCtrl', function($scope, locations, $window, SelectionSe
 			SelectionService.getLocations()
 			.then(function(locations){
 				$scope.locations = locations;
-				$scope.location = {};	
+				$scope.location = {};
 			});
 		});
-
 	};
 
 	$scope.deleteStore = function(location){
