@@ -1,13 +1,22 @@
 (function(){
-	'use strict';
+	'use strict'; 
 
 var app = angular.module('fashionphile');
 
 app.controller('SelectionCtrl', function($scope, locations, $window, SelectionService, $location, $state, $stateParams){
   $scope.goToPage = function(locationId, viewId){
-    var location = locationId[0].toString().replace(/[' ]/g, '').toLowerCase();
-    var view = viewId[0].toString().replace(/[' ]/g, '').toLowerCase();
-    $location.path("/"+view+"/"+location);
+    locationId = locationId[0].toString();
+    console.log('locationId is ', locationId);
+
+  	var view = viewId[0].toString().replace(/[' ]/g, '').toLowerCase();
+  	
+    SelectionService.getLocation(locationId).then(function(response){
+      console.log(response)
+  		var locationParam = response.nameparam
+      console.log(locationParam)
+				console.log("view is " + view, "and location is " + locationParam); 
+				$location.path("/" + view + "/" + locationParam);
+  	});
   }
 
 	$scope.addNew = function(location){

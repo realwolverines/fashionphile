@@ -5,7 +5,7 @@ module.exports = {
   list: function(req, res) {
     Location
       .find({ user: req.user._id })
-      .select('_id name')
+      .select('_id name nameparam')
       .exec()
       .then(function(locations) {
         console.log(locations); 
@@ -16,6 +16,18 @@ module.exports = {
     Location
       .findById(req.params.id)
       .populate('user', 'email')
+      .exec()
+      .then(function(location){
+        res.status(200).json(location);
+      }, function(err){
+        res.status(500).json(err);
+    });
+  },   
+  listName: function(req, res) {
+    console.log('listNamebody', req.params.name)
+    Location
+      .find({nameparam: req.params.name})
+      .select('_id name nameparam active')
       .exec()
       .then(function(location){
         res.status(200).json(location);

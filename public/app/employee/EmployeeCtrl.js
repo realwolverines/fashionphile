@@ -16,4 +16,4 @@ app.controller('EmployeeCtrl', function($scope, $state, $stateParams, CustomerSe
 
 });
 
-})();
+})(); 

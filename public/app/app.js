@@ -1,5 +1,5 @@
 (function(){
-  'use strict';
+  'use strict'; 
 
 var app = angular.module('fashionphile', [ 'ui.router', 'editer']);
 
@@ -23,9 +23,8 @@ app
               var deferred = $q.defer();
                   SelectionService.getLocations()
                     .then(function(locations) {
-                      console.log(locations);
                       deferred.resolve(locations);
-                  });
+                  });0
                   return deferred.promise;
               }
             }
@@ -35,12 +34,15 @@ app
           templateUrl : 'app/customer/customerView.html',
           controller  : 'CustomerCtrl',
           resolve: {
-            customerData: function($q, SelectionService) {
+            customerLocation: function($q, $state, $stateParams, SelectionService) {
+              var nameParam = $stateParams.id; 
+              console.log('nameparam', nameParam)
               var deferred = $q.defer();
-                  SelectionService.getLocations()
-                    .then(function(locations) {
-                      console.log(locations);
-                      deferred.resolve(locations);
+                  SelectionService.getLocationByParam(nameParam)
+                    .then(function(location) {
+                      console.log('app', location[0]);
+                      var currentLocation = location[0];
+                      deferred.resolve(currentLocation);
                   });
                   return deferred.promise;
               }
@@ -52,9 +54,10 @@ app
           controller  : 'EmployeeCtrl',
           resolve: {
             customers: function($state, $stateParams, CustomerService){
-              console.log("state params ", $stateParams.location); 
-              var location = $stateParams.location;
-              return CustomerService.getCustomers(location); 
+              console.log($stateParams)
+              // var location = $stateParams.location; 
+              // CustomerService.getCustomers(location); 
+              // $scope.customers = customers; 
             }
           }
       })
