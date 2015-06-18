@@ -24,13 +24,13 @@
     },
 
     this.getCustomers = function(location){
+      console.log("getCustomers location ", location); 
       var dfd = $q.defer();
         $http({
           method: 'GET',
           url: '/api/employee/'+location
         })
         .then(function(customers){
-          console.log(customers); 
           dfd.resolve(customers);
         })
       return dfd.promise; 

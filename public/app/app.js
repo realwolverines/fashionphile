@@ -53,12 +53,16 @@ app
           templateUrl : 'app/employee/employeeView.html',
           controller  : 'EmployeeCtrl',
           resolve: {
-            customers: function($state, $stateParams, CustomerService){
-              console.log($stateParams)
-              // var location = $stateParams.location; 
-              // CustomerService.getCustomers(location); 
-              // $scope.customers = customers; 
-            }
+            customers: function($state, $stateParams, CustomerService, $q){
+              var location = $stateParams.location; 
+              var dfd = $q.defer(); 
+                CustomerService.getCustomers(location)
+                  .then(function(customers){
+                    console.log(customers);
+                    dfd.resolve(customers); 
+                  }); 
+                return dfd.promise; 
+              }
           }
       })
       .state('stats', {

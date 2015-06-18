@@ -6,10 +6,9 @@ var app = angular.module('fashionphile');
 app.controller('SelectionCtrl', function($scope, locations, $window, SelectionService, $location, $state, $stateParams){
   $scope.goToPage = function(locationId, viewId){
     locationId = locationId[0].toString();
-    console.log('locationId is ', locationId);
-
   	var view = viewId[0].toString().replace(/[' ]/g, '').toLowerCase();
-  	
+    console.log('locationId is ', locationId);
+    
     SelectionService.getLocation(locationId).then(function(response){
       console.log(response)
   		var locationParam = response.nameparam
