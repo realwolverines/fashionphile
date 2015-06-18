@@ -7,10 +7,11 @@ app.controller('CustomerCtrl', function($scope, $stateParams, $state, CustomerSe
     var location = $state.params.id;
     CustomerService.addCustomer(customer, location);
     $scope.customer = {}; 
+    console.log(customer)
   }
 
     $scope.pop = function(){
-      toaster.pop('success', "title", "name");
+      toaster.pop('success', "You are now in the queue!", "");
   };
 
 })

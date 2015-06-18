@@ -99,7 +99,7 @@ button.toast-close-button {
 #toast-container > div {
   margin: 0 0 6px;
   padding: 15px 15px 15px 50px;
-  width: 300px;
+  width: 280px;
   -moz-border-radius: 3px 3px 3px 3px;
   -webkit-border-radius: 3px 3px 3px 3px;
   border-radius: 3px 3px 3px 3px;
@@ -143,10 +143,10 @@ button.toast-close-button {
   margin: auto;
 }
 .toast {
-  background-color: #030303;
+  background-color: #f6a1c8;
 }
 .toast-success {
-  background-color: #51a351;
+  background-color: #f6a1c8;
 }
 .toast-error {
   background-color: #bd362f;
