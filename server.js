@@ -98,22 +98,24 @@ app.post('/api/users/auth', passport.authenticate('local'), function(req, res) {
 });
 
 app.get('/api/location', requireAuth, LocationCtrl.list);
-app.get('/api/location/:id', requireAuth, LocationCtrl.listOne);
+app.get('/api/store/:id', requireAuth, LocationCtrl.listOne);
+app.get('/api/name/:name', requireAuth, LocationCtrl.listName);
 app.post('/api/location', requireAuth, LocationCtrl.create);
 app.delete('/api/location/:id', requireAuth, LocationCtrl.delete);
 app.put('/api/location/:id', requireAuth, LocationCtrl.update);
 
 
-
-
-
-
-
-
-
-
+app.post('/api/:location/queue', requireAuth, QueueCtrl.add);
+app.get('/api/:location/queue', requireAuth, QueueCtrl.getByLocation);
 
 
 app.post('/api/customer/', QueueCtrl.add);
 app.get('/api/customer/', QueueCtrl.getByLocation); 
 // app.put('/api/customer', QueueCtrl.updateCustomer)
+
+
+
+
+
+
+

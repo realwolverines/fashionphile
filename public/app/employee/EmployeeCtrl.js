@@ -8,4 +8,4 @@ app.controller('EmployeeCtrl', function($scope, $stateParams){
 
 });
 
-})();
+})(); 

@@ -1,5 +1,5 @@
 (function(){
-  'use strict';
+  'use strict'; 
 
 var app = angular.module('fashionphile', [ 'ui.router', 'editer']);
 
@@ -23,7 +23,6 @@ app
               var deferred = $q.defer();
                   SelectionService.getLocations()
                     .then(function(locations) {
-                      console.log(locations);
                       deferred.resolve(locations);
                   });
                   return deferred.promise;
@@ -35,12 +34,15 @@ app
           templateUrl : 'app/customer/customerView.html',
           controller  : 'CustomerCtrl',
           resolve: {
-            customerData: function($q, SelectionService) {
+            customerLocation: function($q, $state, $stateParams, SelectionService) {
+              var nameParam = $stateParams.id; 
+              console.log('nameparam', nameParam)
               var deferred = $q.defer();
-                  SelectionService.getLocations()
-                    .then(function(locations) {
-                      console.log(locations);
-                      deferred.resolve(locations);
+                  SelectionService.getLocationByParam(nameParam)
+                    .then(function(location) {
+                      console.log('app', location[0]);
+                      var currentLocation = location[0];
+                      deferred.resolve(currentLocation);
                   });
                   return deferred.promise;
               }
@@ -52,7 +54,7 @@ app
           controller  : 'EmployeeCtrl',
           resolve: {
             customers: function($state, $stateParams, CustomerService){
-              var location = $state.params.id; 
+              var location = $stateParams.location; 
               CustomerService.getCustomers(location); 
               $scope.customers = customers; 
             }
