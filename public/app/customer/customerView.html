@@ -19,8 +19,9 @@
 
 	<div class="form-group">
 		<input type="email" class='form-control' placeholder='email' ng-model="customer.email">
+		<toaster-container></toaster-container>
 	</div>
-	<button ng-click='addCustomer(customer)' class="btn btn-default col-xs-12">Submit</button>
+	<button ng-click='addCustomer(customer); pop()' class="btn btn-default col-xs-12">Submit</button>
 </form>
 </div>
 

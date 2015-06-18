@@ -1,6 +1,6 @@
 var app = angular.module('fashionphile');
 
-app.controller('CustomerCtrl', function($scope, $stateParams, $state, CustomerService){
+app.controller('CustomerCtrl', function($scope, $stateParams, $state, CustomerService, toaster){
   console.log("params id is ", $state.params.id);
 
   $scope.addCustomer = function(customer, location){
@@ -8,6 +8,10 @@ app.controller('CustomerCtrl', function($scope, $stateParams, $state, CustomerSe
     CustomerService.addCustomer(customer, location);
     $scope.customer = {}; 
   }
+
+    $scope.pop = function(){
+      toaster.pop('success', "title", "name");
+  };
 
 })
 
