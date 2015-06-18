@@ -52,8 +52,8 @@ app
           controller  : 'EmployeeCtrl',
           resolve: {
             customers: function($state, $stateParams, CustomerService){
-              var location = $state.params.id;
-                //code here for resolve
+              var location = $stateParams.location;
+              return CustomerService
             }
           }
       })

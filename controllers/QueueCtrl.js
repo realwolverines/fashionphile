@@ -16,23 +16,13 @@ module.exports = {
   },
 
   getByLocation: function(req, res){
-    Customer
-      .findById({location: req.body}, function(err, customers){
-        if(err) res.status(500).end(); 
-        res.json(customers); 
+    console.log(req.params.id); 
+    Customer 
+      .find({status: "pending", location: req.params.id}, function(err, cust){
+        console.log('customers', cust)
+        res.status(200).send(cust).end(); 
       })
   }
-
-  // delete: function(req, res) {
-  //   Customer
-  //     .findById(req.params.customerId)
-  //     .remove()
-  //     .exec(function(err, res){
-  //       console.log(res); 
-  //       if(err) return res.status(500).end(); 
-  //       return res.status(200).json(result); 
-  //     });
-  // },
 
   // updateCustomer: function(req, res){
   //   Customer 
