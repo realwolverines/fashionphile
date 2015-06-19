@@ -1,7 +1,7 @@
 (function(){
-  'use strict'; 
+  'use strict';
 
-var app = angular.module('fashionphile', [ 'ui.router', 'editer']);
+var app = angular.module('fashionphile', [ 'ui.router', 'editer', 'toaster']);
 
 //config
 app
@@ -40,7 +40,6 @@ app
               var deferred = $q.defer();
                   SelectionService.getLocationByParam(nameParam)
                     .then(function(location) {
-                      console.log('app', location[0]);
                       var currentLocation = location[0];
                       deferred.resolve(currentLocation);
                   });
@@ -53,17 +52,31 @@ app
           templateUrl : 'app/employee/employeeView.html',
           controller  : 'EmployeeCtrl',
           resolve: {
-            customers: function($state, $stateParams, CustomerService){
-               console.log("state params ", $stateParams.location); 
-               var location = $stateParams.location;
-               return CustomerService.getCustomers(location); 
-            }
+            customers: function($state, $stateParams, CustomerService, $q){
+              var location = $stateParams.location; 
+              var dfd = $q.defer(); 
+                CustomerService.getCustomers(location)
+                  .then(function(customers){
+                    dfd.resolve(customers); 
+                  }); 
+                return dfd.promise; 
+              }
           }
       })
       .state('stats', {
           url: '/stats',
           templateUrl : 'app/stats/statsView.html',
-          controller  : 'StatsCtrl'
+          controller  : 'StatsCtrl',
+          resolve: {
+            stats: function(StatsService, $q){
+              var dfd = $q.defer();
+                StatsService.getStats()
+                .then(function(stats){
+                  dfd.resolve(stats); 
+                });
+              return dfd.promise; 
+            }
+          }
       })
 
   });
