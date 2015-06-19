@@ -31,7 +31,7 @@
           url: '/api/employee/'+location
         })
         .then(function(customers){
-          dfd.resolve(customers);
+          dfd.resolve(customers.data);
         })
       return dfd.promise; 
     }

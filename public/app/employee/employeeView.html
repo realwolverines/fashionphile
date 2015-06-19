@@ -10,15 +10,11 @@
     <table class="table table-striped">
       
       <tr ng-repeat="customer in customers">
-        <td> {{customer}} </td>
+        <td> {{customer.name}} </td>
         <td>timeInQ</td>
         <td><button class='btn btn-primary btn-xs'>help</button></td>
       </tr>
-
-      <tr ng-repeat="customer in customers"> 
-        <td>{{customer.name}}</td>
-      </tr>
-
+      
     </table>
   </div>
 </div>

@@ -4,14 +4,13 @@ module.exports = {
 
   add: function(req, res){
     var newCustomer = new Customer(req.body); 
-    console.log("add method hit in queueCtrl.js", newCustomer); 
     newCustomer.save(function(err, newCustomer){
       console.log("newCustomer saved ", newCustomer); 
       if(err){
         console.log(err); 
         return res.status(500).end(); 
       }
-      res.json(newCustomer);
+      res.status(200).send().end(); 
     })
   },
 
