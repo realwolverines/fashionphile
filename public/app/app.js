@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-var app = angular.module('fashionphile', [ 'ui.router', 'ngRoute']);
+var app = angular.module('fashionphile', [ 'ui.router', 'editer', 'toaster']);
 
 //config
 app
@@ -23,7 +23,6 @@ app
               var deferred = $q.defer();
                   SelectionService.getLocations()
                     .then(function(locations) {
-                      console.log(locations);
                       deferred.resolve(locations);
                   });
                   return deferred.promise;
@@ -31,25 +30,55 @@ app
             }
       })
       .state('customer', {
-          url: '/customer',
+          url: '/customer/:id',
           templateUrl : 'app/customer/customerView.html',
-          controller  : 'CustomerCtrl'
+          controller  : 'CustomerCtrl',
+          resolve: {
+            customerLocation: function($q, $state, $stateParams, SelectionService) {
+              var nameParam = $stateParams.id; 
+              console.log('nameparam', nameParam)
+              var deferred = $q.defer();
+                  SelectionService.getLocationByParam(nameParam)
+                    .then(function(location) {
+                      var currentLocation = location[0];
+                      deferred.resolve(currentLocation);
+                  });
+                  return deferred.promise;
+              }
+          }
       })
       .state('employee', {
-          url: '/employee',
+          url: '/employee/:location',
           templateUrl : 'app/employee/employeeView.html',
-          controller  : 'EmployeeCtrl'
+          controller  : 'EmployeeCtrl',
+          resolve: {
+            customers: function($state, $stateParams, CustomerService, $q){
+              var location = $stateParams.location; 
+              var dfd = $q.defer(); 
+                CustomerService.getCustomers(location)
+                  .then(function(customers){
+                    dfd.resolve(customers); 
+                  }); 
+                return dfd.promise; 
+              }
+          }
       })
       .state('stats', {
           url: '/stats',
           templateUrl : 'app/stats/statsView.html',
-          controller  : 'StatsCtrl'
+          controller  : 'StatsCtrl',
+          resolve: {
+            stats: function(StatsService, $q){
+              var dfd = $q.defer();
+                StatsService.getStats()
+                .then(function(stats){
+                  dfd.resolve(stats); 
+                });
+              return dfd.promise; 
+            }
+          }
       })
-      .state('/:location', {
-        url: '/:location',
-        templateUrl: './wallDisplay/wallDisplayView.html',
-        controller: 'WallDisplayCtrl'
-      });
+
   });
 
 })();

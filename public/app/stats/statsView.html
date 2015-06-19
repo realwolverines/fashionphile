@@ -4,25 +4,78 @@
 
 <div class="row">
 
-  <h1 class='text-center'>superStatsView</h1>
-  <div class="col-xs-8 col-xs-offset-2">
-    <table class="table table-striped">
-      
-      <tr>
-        <td>customerName</td>
-        <td>timeInQ</td>
-        <td><button class='btn btn-primary btn-xs'>help</button></td>
-      </tr>
+<!-- left view -->
+  <div class="col-xs-6 text-center">
+    <h1>the wait</h1>
 
-      <tr>
-        <td>customerName</td>
-        <td>timeInQ</td>
-        <td><button class='btn btn-primary btn-xs'>help</button></td>
-      </tr>
+    <div class="row">
+      <div class="center-block circle">
+        <div>
+            <h1>12.5
+                <span class='minutes'>mins</span>
+            </h1>
+            <h3 class='average'>average</h3>
+        </div>
+      </div>
+    </div>
 
-    </table>
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-3">
+        <h2 class='leftNum'>32 
+          <span class='minutes'>mins</span>
+        </h2>
+        <h4 class='leftText'>longest</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-3">
+        <h2 class='leftNumSmall'>2 
+          <span class='minutes'>mins</span>
+        </h2>
+        <div class='shortestBar'></div>
+        <h4 class='leftText'>shortest</h4>
+      </div>
+    </div>
   </div>
-</div>
+
+<!-- right view -->
+  <div class="col-xs-6 text-center">
+    <h1>customers</h1>
+   
+    <div class="row">
+      <div class="center-block square">
+          <div>
+              <h1>24</h1>
+              <h3>today</h3>
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-8">      
+          <div class='pull-right rightNum'>
+            <h2>80</h2>
+          </div>
+          <div class='pull-right rightTextContainer'>
+            <h3>this week</h3>
+            <h4>total</h4>
+          </div>  
+      </div>   
+    </div> <!-- end of weeklytotal -->
+    <div class="row">
+      <div class="col-xs-8 ">
+        <div class='pull-right rightNum'>
+          <h2>69 </h2>
+        </div>
+        <div class='pull-right rightTextContainer'>
+          <h3>weekly</h3>
+          <h4>average</h4>
+        </div> 
+      </div>
+    </div> <!-- end of weeklyaverage -->
+  </div> <!-- end of rightviewcontainer -->
+</div> <!-- end MAIN row -->
 
 
 <div class="row">

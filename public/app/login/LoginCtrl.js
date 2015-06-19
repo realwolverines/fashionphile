@@ -1,5 +1,3 @@
-
-
 var app = angular.module('fashionphile');
 
 app.controller('LoginCtrl', function($scope, $location, LoginService){

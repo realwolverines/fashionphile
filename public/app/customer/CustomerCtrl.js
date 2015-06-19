@@ -1,17 +1,19 @@
-
 var app = angular.module('fashionphile');
 
+app.controller('CustomerCtrl', function($scope, $stateParams, $state, CustomerService, customerLocation, toaster){
 
-app.controller('CustomerCtrl', function($scope, $q, $http, CustomerService, $routeParams){
+  $scope.customerLocation = customerLocation;
+  console.log(customerLocation); 
 
-// $scope.getCustomers = function(){
-//   CustomerService.getCustomers(); 
-// }; 
-
-  $scope.addCustomer = function($routeParams){
-    console.log($routeParams);
+  $scope.addCustomer = function(customer, location){
+    var location = $state.params.id;
+    CustomerService.addCustomer(customer, location);
+    toaster.pop('Success!', 'You are now in the queue. We\'ll be with you shortly.')
+    $scope.customer = {};
   }
 
-}) //End Controller 
+  $scope.currentTime = Date.now();
+
+}) 
 
 
