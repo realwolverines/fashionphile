@@ -24,8 +24,12 @@ module.exports = {
   },
 
   helpCustomer: function(req, res){
+    console.log("helpCustomer req body", req.body); 
     Customer 
-      .findByIdAndUpdate(req.params.customerId, {status: req.body.status})
+      .findByIdAndUpdate(req.params.id, {
+          "status": req.body.status, 
+          "helpedAt": req.body.helpedAt
+      })
       .exec(function(err, result) {
         console.log(result); 
         if(err) return res.status(500).end(); 

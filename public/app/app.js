@@ -1,5 +1,5 @@
 (function(){
-  'use strict'; 
+  'use strict';
 
 var app = angular.module('fashionphile', [ 'ui.router', 'editer', 'toaster']);
 
@@ -24,7 +24,7 @@ app
                   SelectionService.getLocations()
                     .then(function(locations) {
                       deferred.resolve(locations);
-                  });0
+                  });
                   return deferred.promise;
               }
             }
@@ -40,7 +40,6 @@ app
               var deferred = $q.defer();
                   SelectionService.getLocationByParam(nameParam)
                     .then(function(location) {
-                      console.log('app', location[0]);
                       var currentLocation = location[0];
                       deferred.resolve(currentLocation);
                   });
@@ -58,7 +57,6 @@ app
               var dfd = $q.defer(); 
                 CustomerService.getCustomers(location)
                   .then(function(customers){
-                    console.log(customers);
                     dfd.resolve(customers); 
                   }); 
                 return dfd.promise; 
@@ -68,7 +66,17 @@ app
       .state('stats', {
           url: '/stats',
           templateUrl : 'app/stats/statsView.html',
-          controller  : 'StatsCtrl'
+          controller  : 'StatsCtrl',
+          resolve: {
+            stats: function(StatsService, $q){
+              var dfd = $q.defer();
+                StatsService.getStats()
+                .then(function(stats){
+                  dfd.resolve(stats); 
+                });
+              return dfd.promise; 
+            }
+          }
       })
 
   });

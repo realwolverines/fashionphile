@@ -18,7 +18,7 @@
         })
         .then(function(res){
           console.log(res);
-          dfd.resolve(res);
+          dfd.resolve(res); 
         });
       return dfd.promise;
     },
@@ -32,6 +32,24 @@
         })
         .then(function(customers){
           dfd.resolve(customers.data);
+        })
+      return dfd.promise; 
+    },
+
+    this.helpCustomer = function(customer){
+      console.log(customer, customer._id); 
+      var customerId = customer._id
+      var dfd = $q.defer(); 
+        $http({
+          method: 'PUT', 
+          url: '/api/customer/'+customerId, 
+          data: {
+            "status": "done", 
+            "helpedAt": Date.now(),
+          }
+        }).then(function(customer){
+          console.log("customer service logs", customer); 
+          dfd.resolve(customer.data); 
         })
       return dfd.promise; 
     }
