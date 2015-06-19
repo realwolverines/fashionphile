@@ -1,7 +1,7 @@
 (function(){
   'use strict'; 
 
-var app = angular.module('fashionphile', [ 'ui.router', 'editer']);
+var app = angular.module('fashionphile', [ 'ui.router', 'editer', 'toaster']);
 
 //config
 app
@@ -24,7 +24,7 @@ app
                   SelectionService.getLocations()
                     .then(function(locations) {
                       deferred.resolve(locations);
-                  });
+                  });0
                   return deferred.promise;
               }
             }
@@ -53,11 +53,16 @@ app
           templateUrl : 'app/employee/employeeView.html',
           controller  : 'EmployeeCtrl',
           resolve: {
-            customers: function($state, $stateParams, CustomerService){
+            customers: function($state, $stateParams, CustomerService, $q){
               var location = $stateParams.location; 
-              CustomerService.getCustomers(location); 
-              $scope.customers = customers; 
-            }
+              var dfd = $q.defer(); 
+                CustomerService.getCustomers(location)
+                  .then(function(customers){
+                    console.log(customers);
+                    dfd.resolve(customers); 
+                  }); 
+                return dfd.promise; 
+              }
           }
       })
       .state('stats', {
