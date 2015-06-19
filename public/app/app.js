@@ -54,9 +54,9 @@ app
           controller  : 'EmployeeCtrl',
           resolve: {
             customers: function($state, $stateParams, CustomerService){
-              var location = $stateParams.location; 
-              CustomerService.getCustomers(location); 
-              $scope.customers = customers; 
+               console.log("state params ", $stateParams.location); 
+               var location = $stateParams.location;
+               return CustomerService.getCustomers(location); 
             }
           }
       })

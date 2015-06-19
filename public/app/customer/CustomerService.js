@@ -23,17 +23,18 @@
       return dfd.promise;
     },
 
-    this.getCustomers = function(location){
-      var dfd = $q.defer(); 
-        $http({
-          method: 'GET', 
-          url: '/api/'+location+'/queue'
-        })
-        .then(function(customers){
-          dfd.resolve(customers);
-        })
-      return dfd.promise; 
-    }
+   this.getCustomers = function(location){
+       var dfd = $q.defer();
+         $http({
+           method: 'GET',
+           url: '/api/employee/'+location
+         })
+         .then(function(customers){
+           console.log(customers); 
+           dfd.resolve(customers);
+         })
+       return dfd.promise; 
+     }
 
 }); /* End of Service logic */
   
