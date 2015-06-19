@@ -7,9 +7,8 @@ app.controller('SelectionCtrl', function($scope, locations, $routeParams, $timeo
 	
 
 	$scope.locations = locations;
+
 	console.log($window.location);
-
-
 	var currentStore = $window.location.hash.substr(2, $window.location.hash.length)
 
 })
