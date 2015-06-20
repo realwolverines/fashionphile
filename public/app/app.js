@@ -63,12 +63,12 @@ app
               }
           }
       })
-      .state('stats', {
-          url: '/stats',
-          templateUrl : 'app/stats/statsView.html',
-          controller  : 'StatsCtrl',
+      .state('admin', {
+          url: '/admin',
+          templateUrl : 'app/admin/adminView.html',
+          controller  : 'adminCtrl',
           resolve: {
-            stats: function(StatsService, $q){
+            stats: function(adminService, $q){
               var dfd = $q.defer();
                 StatsService.getStats()
                 .then(function(stats){
