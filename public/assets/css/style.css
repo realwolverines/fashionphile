@@ -166,3 +166,11 @@ select.form-control {
   margin-top: 0;
 }
 
+.text-inline{
+  position: relative;
+  line-height: 100%;
+  vertical-align: middle;
+  margin: 0 auto;
+  width: 70%
+}
+

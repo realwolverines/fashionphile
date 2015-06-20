@@ -75,7 +75,15 @@ app
                   dfd.resolve(stats);   
                 });
               return dfd.promise; 
-            }
+            },
+            locations: function($q, SelectionService) {
+              var deferred = $q.defer();
+                  SelectionService.getLocations()
+                    .then(function(locations) {
+                      deferred.resolve(locations);
+                  });
+                  return deferred.promise;
+              }
           }
       })
 

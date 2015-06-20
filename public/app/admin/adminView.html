@@ -88,13 +88,14 @@
   <h3><a ui-sref='walldisplay' class='btn btn-default'>walldisplay</a></h3>
 </div>
 
+
+</div>
+
 <!--Individual store stats -->
-  <div ng-repeat="location in locations" >
-      <!-- location name -->
-      <div ng-model="location.name" ng-change="getLocations(locationId)">
-        {{location.name}}
-     </div>
-  </div>
-
-
+<h1 class='text-center'>Store Stats</h1>
+<div ng-repeat="location in locations" >
+    <!-- location name -->
+    <div ng-model="location.name" ng-change="getLocations(locationId)">
+        <div ng-click="goToPage(locationId, viewId)">{{location.name}}</div>
+   </div>
 </div>
