@@ -1,6 +1,6 @@
 var app = angular.module('fashionphile');
 
-app.service('StatsService', function($http, $q){
+app.service('adminService', function($http, $q){
 
   this.getStats = function(){
     var dfd = $q.defer(); 

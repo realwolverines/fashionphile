@@ -1,7 +1,10 @@
 var Customer = require('../models/Customer.js'); 
 var q = require('q'); 
+var moment = require('moment');   
 
-module.exports.getStats = function(req, res) {
+module.exports = {
+
+  getCustomers: function(req, res) {
   var dfd = q.defer();
     Customer
       .find()
@@ -9,5 +12,7 @@ module.exports.getStats = function(req, res) {
       .exec(function(err, customers) {
           dfd.resolve(customers);
       })
-  return dfd.promise;
+    return dfd.promise;
+  }
+
 }
