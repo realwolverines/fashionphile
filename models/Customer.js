@@ -1,10 +1,11 @@
 //Location.js
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var moment = require('moment'); 
 
 var  customerModel = new Schema({
   name: {type: String},
-  joined: {type: Date, default: Date.now},
+  joined: {type: Date, default: moment().format("DD")},
   status: {type: String, enum: ["pending", "done"], default: "pending"},
   helpedAt: {type: Date},
   location: {type: String},
