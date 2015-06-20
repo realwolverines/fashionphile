@@ -6,7 +6,9 @@ var moment = require('../node_modules/moment/moment.js')
 //declare moment
 moment().format(); 
 
-module.exports.getStats = function(req, res){
+module.exports = {
+
+    getStats: function(req, res){
 
     statsService.getCustomers().then(function(stats){
         console.log("stats ", stats); 
@@ -50,11 +52,20 @@ module.exports.getStats = function(req, res){
             "shortestWait":shortestWait, 
             "longestWait":longestWait, 
             "totalCustomers":arrLength
-        })
-        console.log("stats object ", newStats); 
-    });
+        });
 
-    statsService.getLast7Days().then(function(err, customers){
-        console.log("last 7 days of customers ", customers); 
-    })
+        console.log("stats object ", newStats); 
+        //send back new stats
+        res.status(200).send(newStats);
+
+        });
+
+    },
+
+    getLast7Days: function(req, res){
+
+        // statsService.getLast7Days().then(function(err, customers){
+        //     console.log("last 7 days of customers ", customers); 
+        // })
+    }
 }
