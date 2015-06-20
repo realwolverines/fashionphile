@@ -1,6 +1,4 @@
-<div class="row header">
-  <img src="/assets/img/logo-light.png" alt="fashionphilelogo" class='logosmall pull-left'>
-</div>
+`
 
 <div class="row">
 
@@ -13,13 +11,13 @@
         <tr ng-repeat="customer in customers">
           <td> {{customer.name}} </td>
           <td> <span>{{ customer.joined | timeAgo }}</span></td>
-          <td><button class='btn btn-primary btn-xs' ng-click="helpCustomer(customer)">Help Customer</button></td>
+          <td><button class='btn btn-primary btn-xs' ng-click="helpCustomer(customer);">Help Customer</button></td>
         </tr>
 
       </table>
     </div>
 </div>
-
+<toaster-container class="bounceIn"></toaster-container>
 <div class="row">
 <div class='col-xs-3 col-xs-offset-2'>
   <h3><a ui-sref='admin' class='btn btn-default'>admin panel</a></h3>
