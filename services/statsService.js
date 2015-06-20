@@ -44,10 +44,17 @@ module.exports = {
         Customer 
             .find({
                 helpedAt: {
-                    $gt: ObjectId.createFromTimestamp(Date.now()*1000-24*60*60)
+                    $gt: ObjectId.createFromTimestamp(Date.now()*1000-12*60*60)
                 }
-            }).then(function(customers))
+            })
+            .then(function(customers){
+              console.log("getDailyCustomers ", customers); 
+              dfd.resolve(customers); 
+            })
+  },
 
-    }
+
+
+
 
 }
