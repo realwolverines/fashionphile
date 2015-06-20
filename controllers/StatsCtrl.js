@@ -9,61 +9,59 @@ moment().format();
 module.exports = {
 
     getStats: function(req, res){
+        statsService.getCustomers().then(function(stats){
+            console.log("stats ", stats); 
+            //create array for all stat objects to go into 
+            var newStats = [];
+            var length = stats.length-1;
+            var WaitTimes = [];
+            var helpedAt = []; 
+            var allCustomersByDate = []; 
 
-    statsService.getCustomers().then(function(stats){
-        console.log("stats ", stats); 
-        //create array for all stat objects to go into 
-        var newStats = [];
-        var length = stats.length-1;
-        var WaitTimes = [];
-        var helpedAt = []; 
-        var allCustomersByDate = []; 
+            /* GET AVERAGES **************************************/ 
+            var sum = 0;
+            stats.map(function(i){
+              WaitTimes.push(i.helpedAt - i.joined);
+              helpedAt.push(i.helpedAt - i.joined);
+              allCustomersByDate.push(i.helpedAt);
+              sum += (+i.helpedAt - +i.joined);
+            })
+            var average = sum / length;
 
-        /* GET AVERAGES **************************************/ 
-        var sum = 0;
-        stats.map(function(i){
-          WaitTimes.push(i.helpedAt - i.joined);
-          helpedAt.push(i.helpedAt - i.joined);
-          allCustomersByDate.push(i.helpedAt);
-          sum += (+i.helpedAt - +i.joined);
-        })
-        var average = sum / length;
+            //Get All Customers by Date for Average Daily Customers ******/
+            console.log(JSON.stringify(allCustomersByDate)); 
 
-        //Get All Customers by Date for Average Daily Customers ******/
-        console.log(JSON.stringify(allCustomersByDate)); 
+            console.log("underscore", _und.countBy(allCustomersByDate, _und.identity)); 
 
-        // sort wait times to find shortest and longest times 
-        WaitTimes.sort();
+            // sort wait times to find shortest and longest times 
+            WaitTimes.sort();
 
-        /* GET NUMBER OF TOTAL CUSTOMERS ******************************/
-        var arrLength = WaitTimes.length-1; 
+            /* GET NUMBER OF TOTAL CUSTOMERS ******************************/
+            var arrLength = WaitTimes.length-1; 
 
-        /* GET WAIT TIMES SHORTEST AND LONGEST  ***********************/
-        var shortestWait = WaitTimes[0];
-        var longestWait = WaitTimes[arrLength];
+            /* GET WAIT TIMES SHORTEST AND LONGEST  ***********************/
+            var shortestWait = WaitTimes[0];
+            var longestWait = WaitTimes[arrLength];
 
-        /* GET NUMBER OF DAILY CUSTOMERS *****************************/
-        console.log(helpedAt);
+            /* GET NUMBER OF DAILY CUSTOMERS *****************************/
+            console.log(helpedAt);
 
-        /* GET AVERAGE NUMBER OF DAILY CUSTOMERS ********************/
+            /* GET AVERAGE NUMBER OF DAILY CUSTOMERS ********************/
+            
 
+            /*  CREATE STATS OBJECT *************************************/
+            newStats.push({
+                "average": average,
+                "shortestWait":shortestWait, 
+                "longestWait":longestWait, 
+                "totalCustomers":arrLength
+            })
 
-        /* GET LIFETIME CUSTOMERS ***********************************/
+            console.log("stats object ", newStats); 
+            //send back new stats
+            res.status(200).send(newStats);
 
-
-        /*  CREATE STATS OBJECT *************************************/
-        newStats.push({
-            "average": average,
-            "shortestWait":shortestWait, 
-            "longestWait":longestWait, 
-            "totalCustomers":arrLength
-        })
-
-        console.log("stats object ", newStats); 
-        //send back new stats
-        res.status(200).send(newStats);
-
-        });
+            });
 
     },
 

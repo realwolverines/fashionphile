@@ -15,17 +15,6 @@ module.exports = {
   return dfd.promise;
   },
 
-  getTotalHelped: function(req, res){
-    var dfd = q.defer(); 
-      Customer
-        .find()
-        .where("status").equals("done")
-        .exec(function(err, cust) {
-          dfd.resolve(cust);
-        })
-      return dfd.promise;
-  },
-
   getLast7Days: function(req, res){
     var dfd = q.defer(); 
       Customer
@@ -37,24 +26,20 @@ module.exports = {
           dfd.resolve(customers); 
         })
       return dfd.promise; 
-  },
+  }
 
-  getDailyCustomers: function(req, res){
-    var dfd = q.defer(); 
-        Customer 
-            .find({
-                helpedAt: {
-                    $gt: ObjectId.createFromTimestamp(Date.now()*1000-12*60*60)
-                }
-            })
-            .then(function(customers){
-              console.log("getDailyCustomers ", customers); 
-              dfd.resolve(customers); 
-            })
-  },
-
-
-
-
+  // getDailyCustomers: function(req, res){
+  //   var dfd = q.defer(); 
+  //       Customer 
+  //           .find({
+  //               helpedAt: {
+  //                   $gt: ObjectId.createFromTimestamp(Date.now()*1000-12*60*60)
+  //               }
+  //           })
+  //           .then(function(customers){
+  //             console.log("getDailyCustomers ", customers); 
+  //             dfd.resolve(customers); 
+  //           })
+  // },
 
 }
