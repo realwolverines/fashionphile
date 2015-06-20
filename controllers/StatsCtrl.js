@@ -57,4 +57,5 @@ module.exports = {
     statsService.getLast7Days().then(function(err, customers){
         console.log("last 7 days of customers ", customers); 
     })
+  }
 }
