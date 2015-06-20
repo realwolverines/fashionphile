@@ -44,7 +44,8 @@ module.exports = {
             var map = {};
             var sequence = [];
             var averageDailyUsers = allCustomersByDate.map(function(i) {
-            return i.substring(0, 10).trim();
+                console.log("SUBSTRING ", i.substring(0, 11)); 
+            return i.substring(0, 11).trim();
                 })
 
            console.log("AVERAGE DAILY USERS", averageDailyUsers); 
@@ -57,22 +58,50 @@ module.exports = {
                     map[item] = 1;
                     sequence.push(item);
                 }
+                console.log("MAP", map);
             }
 
-            var output = [];
 
+            var output = [];
             for (i = 0; i < sequence.length; i++) {
                 output.push(map[sequence[i]]);
             }
-            var sumAverageDaily = 0
-            var lengthAverageDaily = output.length
+            var sumAverageDaily = 0;
+            var lengthAverageDaily = output.length;
             
             output.map(function(i) {
                 sumAverageDaily += Number(i);
             });
+
             var avgDaily = sumAverageDaily / lengthAverageDaily;
 
             console.log("average daily users", avgDaily);
+
+            /* GET AVERAGE CUSTOMERS BY DAY OF WEEK *********************/
+            var dayOfWeek = {
+                M:0,
+                T:0,
+                W:0,
+                Th:0,
+                F:0,
+                S:0,
+                Su:0,
+            }; 
+
+            var today = moment().format(); 
+            console.log("Date now", today);
+
+             for (var i = 0; i < averageDailyUsers.length; i++) {
+                var item = averageDailyUsers[i];
+                if (map[item]) {
+                    map[item]++;
+                } else {
+                    map[item] = 1;
+                    sequence.push(item);
+                }
+                console.log("MAP", map);
+            }
+
 
             /*  CREATE STATS OBJECT *************************************/
             newStats.push({
@@ -87,7 +116,7 @@ module.exports = {
             //send back new stats
             res.status(200).send(newStats);
 
-            });
+        });
 
     }
 

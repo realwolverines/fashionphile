@@ -12,7 +12,7 @@ module.exports = {
       .exec(function(err, customers) {
           dfd.resolve(customers);
       })
-  return dfd.promise;
+    return dfd.promise;
   }
 
 }

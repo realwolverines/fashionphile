@@ -18,7 +18,7 @@ app.controller('adminCtrl', function($scope, adminService, stats){
     $scope.averageWait = mins;
 
     $scope.shortestWait = stats.shortestWait;
-
+    
     // $scope.longestWait = stats.longestWait;
     // $scope.totalCustomers = stats.totalCustomers;
 
