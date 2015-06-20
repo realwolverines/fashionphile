@@ -10,28 +10,23 @@ module.exports = {
 
     getStats: function(req, res){
         statsService.getCustomers().then(function(stats){
-            console.log("stats ", stats); 
+
             //create array for all stat objects to go into 
             var newStats = [];
             var length = stats.length-1;
             var WaitTimes = [];
             var helpedAt = []; 
-            var allCustomersByDate = []; 
+            var allCustomersByDate = [];
 
             /* GET AVERAGES **************************************/ 
             var sum = 0;
             stats.map(function(i){
               WaitTimes.push(i.helpedAt - i.joined);
               helpedAt.push(i.helpedAt - i.joined);
-              allCustomersByDate.push(i.helpedAt);
+              allCustomersByDate.push(JSON.stringify(i.helpedAt));
               sum += (+i.helpedAt - +i.joined);
             })
             var average = sum / length;
-
-            //Get All Customers by Date for Average Daily Customers ******/
-            console.log(JSON.stringify(allCustomersByDate)); 
-
-            console.log("underscore", _und.countBy(allCustomersByDate, _und.identity)); 
 
             // sort wait times to find shortest and longest times 
             WaitTimes.sort();
@@ -44,17 +39,48 @@ module.exports = {
             var longestWait = WaitTimes[arrLength];
 
             /* GET NUMBER OF DAILY CUSTOMERS *****************************/
-            console.log(helpedAt);
 
             /* GET AVERAGE NUMBER OF DAILY CUSTOMERS ********************/
+            var map = {};
+            var sequence = [];
+            var averageDailyUsers = allCustomersByDate.map(function(i) {
+            return i.substring(0, 10).trim();
+                })
+
+           console.log("AVERAGE DAILY USERS", averageDailyUsers); 
+
+           for (var i = 0; i < averageDailyUsers.length; i++) {
+                var item = averageDailyUsers[i];
+                if (map[item]) {
+                    map[item]++;
+                } else {
+                    map[item] = 1;
+                    sequence.push(item);
+                }
+            }
+
+            var output = [];
+
+            for (i = 0; i < sequence.length; i++) {
+                output.push(map[sequence[i]]);
+            }
+            var sumAverageDaily = 0
+            var lengthAverageDaily = output.length
             
+            output.map(function(i) {
+                sumAverageDaily += Number(i);
+            });
+            var avgDaily = sumAverageDaily / lengthAverageDaily;
+
+            console.log("average daily users", avgDaily);
 
             /*  CREATE STATS OBJECT *************************************/
             newStats.push({
                 "average": average,
                 "shortestWait":shortestWait, 
                 "longestWait":longestWait, 
-                "totalCustomers":arrLength
+                "totalCustomers":arrLength,
+                "averageDailyCust":avgDaily
             })
 
             console.log("stats object ", newStats); 
@@ -63,14 +89,8 @@ module.exports = {
 
             });
 
-    },
-
-    getLast7Days: function(req, res){
-
-        // statsService.getLast7Days().then(function(err, customers){
-        //     console.log("last 7 days of customers ", customers); 
-        // })
     }
+
 
 
 }
