@@ -26,7 +26,7 @@
 		        </form>
 			      <div ng-repeat="location in locations" >
 			      	<!-- location name -->
-		        	<div ng-model="location.name" ng-change="getLocations(locationId)" ng-show="!location.editing" ng-dblclick="startLocationEditing(location)">
+		        	<div ng-model="location.name" ng-change="getLocations(locationId)" ng-show="!location.editing" ng-dblclick="startLocationEditing(location)" class='editLocation'>
 		        	{{location.name}}
 	  					</div>
 	  					<!-- edit location name -->
