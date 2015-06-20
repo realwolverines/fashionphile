@@ -68,4 +68,6 @@ module.exports = {
         //     console.log("last 7 days of customers ", customers); 
         // })
     }
+
+
 }

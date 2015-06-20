@@ -37,6 +37,17 @@ module.exports = {
           dfd.resolve(customers); 
         })
       return dfd.promise; 
-  }
+  },
+
+  getDailyCustomers: function(req, res){
+    var dfd = q.defer(); 
+        Customer 
+            .find({
+                helpedAt: {
+                    $gt: ObjectId.createFromTimestamp(Date.now()*1000-24*60*60)
+                }
+            }).then(function(customers))
+
+    }
 
 }
