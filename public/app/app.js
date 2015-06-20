@@ -70,9 +70,9 @@ app
           resolve: {
             stats: function(adminService, $q){
               var dfd = $q.defer();
-                StatsService.getStats()
+                adminService.getStats()
                 .then(function(stats){
-                  dfd.resolve(stats); 
+                  dfd.resolve(stats);   
                 });
               return dfd.promise; 
             }
