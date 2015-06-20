@@ -12,13 +12,13 @@ app.controller('EmployeeCtrl', function($scope, $state, $location, CustomerServi
   $scope.helpCustomer = function(customer){
     CustomerService.helpCustomer(customer)
       .then(function(customer){
-         toaster.pop('Success!', 'You are now in the queue. We\'ll be with you shortly.')
+         toaster.pop('success', 'Customer being helped')
         var location = customer.location
         CustomerService.getCustomers(location)
         .then(function(customers){
           $scope.customers = customers;
         }); 
-        
+          
       }); 
   }
 
