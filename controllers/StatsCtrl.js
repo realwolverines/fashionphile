@@ -1,9 +1,10 @@
 var Customer = require('../models/Customer.js'); 
 var statsService = require('../services/statsService.js'); 
 
-module.exports.getStats = function(req, res){
+module.exports = {
 
-    statsService.getStats().then(function(stats){
+    getStats: function(req, res) {
+        statsService.getStats().then(function(stats){
         //create array for all stat objects to go into 
         var newStats = []; 
         var length = stats.length-1;
@@ -42,11 +43,10 @@ module.exports.getStats = function(req, res){
         /* GET AVERAGE NUMBER OF DAILY CUSTOMERS ************/
 
 
-        /*  GET LIFETIME CUSTOMERS *****************************/
-
-
-        console.log("stats object ", newStats); 
-
-
-    });
-}
+        /* GET LIFETIME CUSTOMERS *****************************/
+        }).then(function(response){
+            console.log("stats object ", newStats);
+            res.send(newStats)
+        });
+    }
+};
