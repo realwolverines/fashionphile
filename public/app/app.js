@@ -72,7 +72,7 @@ app
               var dfd = $q.defer();
                 adminService.getStats()
                 .then(function(stats){
-                  dfd.resolve(stats);   
+                  dfd.resolve(stats[0]);   
                 });
               return dfd.promise; 
             }

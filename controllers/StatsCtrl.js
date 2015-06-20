@@ -52,7 +52,7 @@ module.exports = {
             "shortestWait":shortestWait, 
             "longestWait":longestWait, 
             "totalCustomers":arrLength
-        });
+        })
 
         console.log("stats object ", newStats); 
         //send back new stats
