@@ -8,7 +8,8 @@ moment().format();
 
 module.exports = {
 
-    getStats: function(req, res) {
+    getStats: function(req, res){
+
      statsService.getCustomers().then(function(stats){
         console.log("stats ", stats); 
         //create array for all stat objects to go into 
@@ -50,9 +51,17 @@ module.exports = {
             "shortestWait":shortestWait, 
             "longestWait":longestWait, 
             "totalCustomers":arrLength
-        })
+        });
+
         console.log("stats object ", newStats); 
-    });
+        //send back new stats
+        res.status(200).send(newStats);
+
+        });
+
+    },
+
+    getLast7Days: function(req, res){
 
     statsService.getLast7Days().then(function(err, customers){
         console.log("last 7 days of customers ", customers); 
