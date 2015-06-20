@@ -26,6 +26,7 @@ app.use(passport.session());
 var QueueCtrl = require('./controllers/QueueCtrl');
 var UserCtrl = require('./controllers/UserCtrl');
 var LocationCtrl = require('./controllers/LocationCtrl');
+var StatsCtrl = require('./controllers/StatsCtrl'); 
 
 //Models
 var User = require('./models/User');
@@ -104,13 +105,11 @@ app.post('/api/location', requireAuth, LocationCtrl.create);
 app.delete('/api/location/:id', requireAuth, LocationCtrl.delete);
 app.put('/api/location/:id', requireAuth, LocationCtrl.update);
 
-// app.get('/api/employee/:location', QueueCtrl.getByLocation)
-
-
-//GET by Location :id 
 app.get('/api/employee/:id', QueueCtrl.getByLocation)
+
 app.post('/api/customer/', QueueCtrl.add);
+app.put('/api/customer/:id', QueueCtrl.helpCustomer); 
 
-
+app.get('/api/stats', StatsCtrl.getStats); 
 
 
