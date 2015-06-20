@@ -1,52 +1,60 @@
 var Customer = require('../models/Customer.js'); 
-var statsService = require('../services/statsService.js'); 
+var statsService = require('../services/statsService.js');
+var _und = require('../node_modules/underscore/underscore.js');
+var moment = require('../node_modules/moment/moment.js')
+
+//declare moment
+moment().format(); 
 
 module.exports.getStats = function(req, res){
 
-    statsService.getStats().then(function(stats){
+    statsService.getCustomers().then(function(stats){
+        console.log("stats ", stats); 
         //create array for all stat objects to go into 
-        var newStats = []; 
+        var newStats = [];
         var length = stats.length-1;
-        var WaitTimesArr = []; 
+        var WaitTimes = [];
+        var helpedAt = []; 
 
         /* GET AVERAGES **************************************/ 
         var sum = 0;
         stats.map(function(i){
-          console.log(sum);
-          sum += (i.helpedAt - i.joined);
-          WaitTimesArr.push(i.helpedAt - i.joined);
-          console.log("pushed to wait times ", (i.helpedAt - i.joined)); 
+          WaitTimes.push(i.helpedAt - i.joined);
+          helpedAt.push(i.helpedAt - i.joined);
+          sum += (+i.helpedAt - +i.joined);
         })
-        var average = sum / length; 
-        console.log("total average is ", average);
-
+        var average = sum / length;
         //add average to newStats array 
-        newStats.push({"average": average})
-        console.log(newStats);
 
-        /* LONGEST WAIT TIME  *********************/
-        var longestWait = Math.max([WaitTimesArr]); 
-        newStats.push({"longestWait": longestWait}); 
+        WaitTimes.sort();
 
-        /* GET SHORTEST WAIT TIME *****************************/
-        var shortestWait = Math.min([WaitTimesArr]); 
-        newStats.push({"shortestWait": shortestWait})
+        // /* GET NUMBER OF TOTAL CUSTOMERS *********************/
+        var arrLength = WaitTimes.length-1; 
 
+        /* GET WAIT TIMES SHORTEST AND LONGEST  ********************/
+        var shortestWait = WaitTimes[0];
+        var longestWait = WaitTimes[arrLength];
 
-        /* GET NUMBER OF DAILY CUSTOMERS *********************/
+        /* GET NUMBER OF DAILY CUSTOMERS **************************/
+        console.log(helpedAt);
 
-
-        /* GET NUMBER OF DAILY CUSTOMERS *********************/
+        /* GET AVERAGE NUMBER OF DAILY CUSTOMERS *****************/
 
 
-        /* GET AVERAGE NUMBER OF DAILY CUSTOMERS ************/
+        /* GET LIFETIME CUSTOMERS ********************************/
 
 
-        /*  GET LIFETIME CUSTOMERS *****************************/
-
-
+        /*  CREATE STATS OBJECT **********************************/
+        newStats.push({
+            "average": average,
+            "shortestWait":shortestWait, 
+            "longestWait":longestWait, 
+            "totalCustomers":arrLength
+        })
         console.log("stats object ", newStats); 
-
-
     });
+
+    statsService.getLast7Days().then(function(err, customers){
+        console.log("last 7 days of customers ", customers); 
+    })
 }
