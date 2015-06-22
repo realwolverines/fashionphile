@@ -1,21 +1,21 @@
 (function(){
   'use strict';
 
-var app = angular.module('fashionphile', [ 'ui.router', 'editer', 'toaster', 'ui.tree', 'treeApp']);
+var app = angular.module('fashionphile', [ 'ui.router', 'editer', 'toaster']);
 
 //config
 app
-	.config(function($stateProvider, $urlRouterProvider) {
-		$urlRouterProvider.when('', '/');
-		$urlRouterProvider.otherwise('/');
-		$stateProvider
-		 	.state('login', {
-		 			url: '/',
+  .config(function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.when('', '/');
+    $urlRouterProvider.otherwise('/');
+    $stateProvider
+      .state('login', {
+          url: '/',
           templateUrl : 'app/login/loginView.html',
           controller  : 'LoginCtrl'
       })
       .state('selection', {
-      		url: '/selection',
+          url: '/selection',
           templateUrl : 'app/selection/selectionView.html',
           controller  : 'SelectionCtrl',
           resolve: {
@@ -63,6 +63,23 @@ app
               }
           }
       })
+      .state('walldisplay', {
+        url: '/walldisplay/:location',
+        templateUrl: 'app/wallDisplay/wallDisplayView.html',
+        controller: 'WallDisplayCtrl',
+        resolve: {
+          customers: function($state, $stateParams, CustomerService, $q){
+            var location = $stateParams.location;
+            var dfd = $q.defer()
+              CustomerService.getCustomers(location)
+              .then(function(customers){
+                dfd.resolve(customers);
+              })
+              return dfd.promise;
+          }
+        }
+      })
+
       .state('admin', {
           url: '/admin',
           templateUrl : 'app/admin/adminView.html',
@@ -75,15 +92,42 @@ app
                   dfd.resolve(stats[0]);   
                 });
               return dfd.promise; 
+            },
+            locations: function($q, SelectionService) {
+              var deferred = $q.defer();
+                  SelectionService.getLocations()
+                    .then(function(locations) {
+                      deferred.resolve(locations);
+                    });
+                  return deferred.promise;
             }
           }
       })
-      .state('walldisplay', {
-        url: '/dashboard',
-        templateUrl :'app/dashboard/itemSorter/dashboardView.html',
-        controller : 'treeCtrl'
-      })
 
+      .state('dashboard', {
+          url: '/dashboard/:id',
+          templateUrl : 'app/dashboard/dashboardView.html',
+          controller  : 'dashboardCtrl',
+          resolve: {
+            stats: function(adminService, $q, $stateParams){
+              var location = $stateParams.id; 
+              var dfd = $q.defer();
+                adminService.getStatsByLocation(location)
+                .then(function(stats){
+                  dfd.resolve(stats);
+                });
+              return dfd.promise;
+            }
+          //   // locations: function($q, SelectionService) {
+          //   //   var deferred = $q.defer();
+          //   //       SelectionService.getLocations()
+          //   //         .then(function(locations) {
+          //   //           deferred.resolve(locations);
+          //   //         });
+          //   //       return deferred.promise;
+          //   // }
+          }
+      }); 
   });
 
 })();

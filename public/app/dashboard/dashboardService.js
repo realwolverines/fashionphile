@@ -1,6 +1,6 @@
 var app = angular.module('fashionphile');
 
-app.service('adminService', function($http, $q){
+app.service('dashboardService', function($http, $q){
 
   this.getStats = function(){
     var dfd = $q.defer(); 
@@ -10,18 +10,6 @@ app.service('adminService', function($http, $q){
       }).then(function(stats){
         console.log(stats.data); 
         dfd.resolve(stats.data); 
-      })
-    return dfd.promise; 
-  }
-
-  this.getStatsByLocation = function(location){
-    var dfd = $q.defer(); 
-      $http({
-        method: 'GET', 
-        url: '/api/stats/'+ location,
-      }).then(function(data){
-        console.log("getStatsByLocation", data); 
-        dfd.resolve(data); 
       })
     return dfd.promise; 
   }

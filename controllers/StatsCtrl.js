@@ -118,6 +118,14 @@ module.exports = {
 
         });
 
+    },
+
+    getStatsByLocation: function(req, res){
+        var locationId = req.params.id;
+        statsService.getCustomersByLocation(locationId).then(function(stats){
+            console.log("STATS BY LOCATION", stats);
+            res.status(200).send(stats); 
+        })
     }
 
 

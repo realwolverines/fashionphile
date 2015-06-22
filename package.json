@@ -25,11 +25,13 @@
     "cors": "^2.7.1",
     "express": "^4.12.4",
     "express-session": "^1.11.2",
+    "moment": "^2.10.3",
     "mongodb-queue": "^1.0.1",
     "mongoose": "^4.0.5",
     "passport": "^0.2.2",
     "passport-local": "^1.0.0",
-    "q": "^1.4.1"
+    "q": "^1.4.1",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "bson": "^0.3.2",
