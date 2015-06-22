@@ -5,7 +5,7 @@ var moment = require('moment');
 
 var  customerModel = new Schema({
   name: {type: String},
-  joined: {type: Date, default: moment().format("DD")},
+  joined: {type: Date},
   status: {type: String, enum: ["pending", "done"], default: "pending"},
   helpedAt: {type: Date},
   location: {type: String},

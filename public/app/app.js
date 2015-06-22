@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-var app = angular.module('fashionphile', [ 'ui.router', 'editer', 'toaster', 'ui.tree', 'treeApp']);
+var app = angular.module('fashionphile', [ 'ui.router', 'editer', 'toaster']);
 
 //config
 app
@@ -81,7 +81,7 @@ app
       })
 
       .state('admin', {
-          url: '/admin/:location',
+          url: '/admin',
           templateUrl : 'app/admin/adminView.html',
           controller  : 'adminCtrl',
           resolve: {
@@ -103,34 +103,30 @@ app
             }
           }
       })
-      .state('dasbhoard', {
-          url: '/dasbhoard',
-          templateUrl : 'app/dasbhoard/dashboardView.html',
-          controller  : 'dasbhoardCtrl',
-          resolve: {
-            stats: function(adminService, $q){
-              var dfd = $q.defer();
-                adminService.getStats()
-                .then(function(stats){
-                  dfd.resolve(stats);   
-                });
-              return dfd.promise; 
-            },
-            locations: function($q, SelectionService) {
-              var deferred = $q.defer();
-                  SelectionService.getLocations()
-                    .then(function(locations) {
-                      deferred.resolve(locations);
-                    });
-                  return deferred.promise;
-            }
-          }
-      })
       .state('dashboard', {
-        url: '/dashboard',
-        templateUrl :'app/dashboard/itemSorter/dashboardView.html',
-        controller : 'treeCtrl'
-      })
+          url: '/dashboard/:id',
+          templateUrl : 'app/dashboard/dashboardView.html',
+          controller  : 'dashboardCtrl',
+          resolve: {
+            stats: function(adminService, $q, $stateParams){
+              var location = $stateParams.id; 
+              var dfd = $q.defer();
+                adminService.getStatsByLocation(location)
+                .then(function(stats){
+                  dfd.resolve(stats);
+                });
+              return dfd.promise;
+            }
+          //   // locations: function($q, SelectionService) {
+          //   //   var deferred = $q.defer();
+          //   //       SelectionService.getLocations()
+          //   //         .then(function(locations) {
+          //   //           deferred.resolve(locations);
+          //   //         });
+          //   //       return deferred.promise;
+          //   // }
+          }
+      }); 
 
   });
 

@@ -14,6 +14,18 @@ app.service('adminService', function($http, $q){
     return dfd.promise; 
   }
 
+  this.getStatsByLocation = function(location){
+    var dfd = $q.defer(); 
+      $http({
+        method: 'GET', 
+        url: '/api/stats/'+ location,
+      }).then(function(data){
+        console.log("getStatsByLocation", data); 
+        dfd.resolve(data); 
+      })
+    return dfd.promise; 
+  }
+
   this.getLocations = function(){
     var deferred = $q.defer()
       $http({

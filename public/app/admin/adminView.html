@@ -105,6 +105,6 @@
 <div ng-repeat="location in locations" >
     <!-- location name -->
     <div ng-model="location.name" ng-change="getLocations(locationId)">
-        <div ng-click="goToPage(locationId, viewId)">{{location.name}}</div>
+        <div ng-click="goToAdminView(location.name)">{{location.name}}</a></div>
    </div>
 </div>
