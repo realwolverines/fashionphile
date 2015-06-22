@@ -103,6 +103,7 @@ app
             }
           }
       })
+
       .state('dashboard', {
           url: '/dashboard/:id',
           templateUrl : 'app/dashboard/dashboardView.html',
@@ -127,7 +128,6 @@ app
           //   // }
           }
       }); 
-
   });
 
 })();
