@@ -181,6 +181,7 @@ select.form-control {
 .modalLocations {
   margin-bottom: 20px;
   background: #5a5a5a;
+  border-color: #fff;
   -webkit-transition: 0.25s;
           transition: 0.25s;
 }
