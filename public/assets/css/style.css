@@ -233,3 +233,21 @@ select.form-control {
   width: auto;
   margin-right: 10px;
 }
+
+.urlInputButton {
+   width: 20%;
+   border-radius: 4px;
+   height: 39px;
+   float: left;
+   margin-bottom: 20px;
+}
+
+.urlInput {
+   width: 76%;
+   border-radius: 4px;
+   float: left;
+   margin-left: 10px;
+}
+.urlInputH4 {
+   margin-left: 10px;
+}

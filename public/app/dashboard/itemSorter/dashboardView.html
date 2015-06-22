@@ -10,23 +10,23 @@
 
     <form>
   <fieldset>
-    <label>New image</label>
-    <input type="text" ng-model="imageUrl" placeholder="Image URL">
-    <button type="submit" class="btn" ng-click="newImage(imageUrl)">Submit</button>
-    <h4>Only the First 10 Images will display</h4>
+  
+    <input class="form-control urlInput" type="text" ng-model="imageUrl" placeholder="Image URL">
+    <button type="submit" class="btn-default urlInputButton" ng-click="newImage(imageUrl)">Submit</button></br>
+    <h4 class="urlInputH4">Only the First 10 Images will display</h4>
   </fieldset>
 </form>
 <!-- Nested node template -->
         <script type="text/ng-template" id="nodes_renderer.html">
           <div ui-tree-handle class="newImage tree-node tree-node-content ">
-          <div ng-show="node.folder" class="newImage" data-noDrag></span><h3>
-            {{node.title}}</h3><hr></div>
+          <div ng-show="node.folder" class="newImage" data-noDrag></span><h5 style="margin-top: 0px;">
+            {{node.title}}</h5><hr></div>
           <div class="newNode">
               <div class="nodeIndex" ng-show="node.index <= 10">{{node.index}}</div>
               <a class="newImage">
                 <img ng-show="!node.folder" style="height: 70px;" src={{node.image}}>
               </a>
-              <hr>
+              
             </div>
           </div>
 <!-- Child Nodes -->
