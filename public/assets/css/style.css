@@ -17,6 +17,7 @@ body {
 .footer {
   position: absolute;
   bottom: 0;
+  z-index: -100;
   width: 100%;
   height: 80px;
   background: #d5d5d5;
@@ -82,10 +83,10 @@ select.form-control {
 }
 .header {
   background: #434343;
-  padding: 20px;
+  padding: 20px 20px 5px;
 }
 .logout {
-  margin-left: 20px;
+  margin: 20px 20px;
   padding: 10px 20px;
   border: 1px solid #2f2f2f;
   border-radius: 4px;
@@ -165,13 +166,60 @@ select.form-control {
   left: -30px;
   margin-top: 0;
 }
-
+/* added for edit icon */
 .editLocation:before {
   content: "";
   display: inline-block;
   background: url('../img/edit.png') no-repeat;
   background-size: contain;
-  margin-top: 10px;
+ /* margin-top: 12px;*/
   width: 20px;
   height: 20px;
+}
+
+/*darker to de-emphasize desire to edit locations*/
+.modalLocations {
+  margin-bottom: 20px;
+  background: #5a5a5a;
+  -webkit-transition: 0.25s;
+          transition: 0.25s;
+}
+.modalLocations:hover{
+  background: #6C6C6C;
+  -webkit-transition: 0.25s;
+        transition: 0.25s;
+}
+
+.icons {
+  padding: 0;
+  margin: 0;
+}
+
+.navLocation {
+  color: #FFFFFF;
+  margin-left: 12px;
+  content:url('../img/map.png');
+}
+
+.locationName {
+  color: white;
+}
+
+.locationName::before{
+  content: url('../img/map.png');
+  height: 45px;
+}
+
+#stats {
+  content: url('../img/graph.png');
+  height: 45px;
+  width: auto;
+  margin: 0;
+}
+
+#walldisplay {
+  content: url('../img/tv.png');
+  height: 45px;
+  width: auto;
+  margin: 0;
 }
