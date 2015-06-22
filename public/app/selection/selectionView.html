@@ -8,7 +8,7 @@
     <h2 class='text-center'>Please Select Location</h2>
 
 		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#editLocation" ng-click="location = {}">
+		<button type="button" class="btn btn-primary btn-md modalLocations" data-toggle="modal" data-target="#editLocation" ng-click="location = {}">
 		Manage Locations
 		</button>
 
@@ -26,14 +26,14 @@
 		        </form>
 			      <div ng-repeat="location in locations" >
 			      	<!-- location name -->
-		        	<div ng-model="location.name" ng-change="getLocations(locationId)" ng-show="!location.editing" ng-dblclick="startLocationEditing(location)">
+		        	<div class='editLocation' ng-model="location.name" ng-change="getLocations(locationId)" ng-show="!location.editing" ng-dblclick="startLocationEditing(location)">
 		        	{{location.name}}
 	  					</div>
 	  					<!-- edit location name -->
 	  					<form ng-show="location.editing" ng-submit="doneLocationEditing(location)">
 	  						<input type="text" class="form-control" ng-model="location.name" ng-focus="location == editedItem" />
 								<!-- closing button -->
-	  						<div class="glyphicon glyphicon-remove pull-right" ng-click="deleteStore(location)" style="cursor:pointer; color:red;">
+	  						<div class="glyphicon glyphicon-remove pull-right" ng-click="deleteStore(location)" style="position: relative; top: -25px; right: -15px; cursor:pointer; color:red;">
 		           	</div>
 		           </form>
 	  			  </div> 

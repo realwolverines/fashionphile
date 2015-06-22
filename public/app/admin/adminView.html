@@ -1,7 +1,16 @@
 <div class="row header">
-  <img src="/assets/img/logo-light.png" alt="fashionphilelogo" class='logosmall pull-left'>
-</div>
+  <img src="/assets/img/logo-light.png" alt="fashionphilelogo" class='logosmall col-xs-4'>
 
+  <div class="icons">
+    <div class='col-xs-1 pull-right'>
+      <a ui-sref='admin' id='stats' class='btn btn-default'></a>
+    </div>
+    <div class='col-xs-1 pull-right'>
+      <a ui-sref='walldisplay' id='walldisplay' class='btn btn-default'></a>
+    </div>
+  </div>
+
+</div>
 <div class="row">
 
 <!-- left view -->
@@ -11,7 +20,7 @@
     <div class="row">
       <div class="center-block circle">
         <div>
-            <h1>12.5
+            <h1>{{averageWait}}
                 <span class='minutes'>mins</span>
             </h1>
             <h3 class='average'>average</h3>
