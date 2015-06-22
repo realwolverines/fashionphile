@@ -78,7 +78,7 @@ app
             }
           }
       })
-      .state('dashboard', {
+      .state('walldisplay', {
         url: '/dashboard',
         templateUrl :'app/dashboard/itemSorter/dashboardView.html',
         controller : 'treeCtrl'
