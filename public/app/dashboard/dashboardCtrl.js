@@ -2,7 +2,7 @@
 
 var app = angular.module('fashionphile');
 
-app.controller('adminCtrl', function($scope, SelectionService, $location, locations, $state, $stateParams){
+app.controller('dashboardCtrl', function($scope, SelectionService, $location, locations, $state, $stateParams){
    
 
    $scope.goToPage = function(locationId, viewId){
@@ -19,7 +19,7 @@ app.controller('adminCtrl', function($scope, SelectionService, $location, locati
   	});
 }
 
-    // $scope.stats = stats;å
+    // $scope.stats = stats;
     // $scope.averageWait = stats.averageTime; 
 
     $scope.locations = locations;

@@ -81,9 +81,32 @@ app
                   SelectionService.getLocations()
                     .then(function(locations) {
                       deferred.resolve(locations);
-                  });
+                    });
                   return deferred.promise;
-              }
+            }
+          }
+      })
+      .state('dasbhoard', {
+          url: '/dasbhoard',
+          templateUrl : 'app/dasbhoard/dashboardView.html',
+          controller  : 'dasbhoardCtrl',
+          resolve: {
+            stats: function(adminService, $q){
+              var dfd = $q.defer();
+                adminService.getStats()
+                .then(function(stats){
+                  dfd.resolve(stats);   
+                });
+              return dfd.promise; 
+            },
+            locations: function($q, SelectionService) {
+              var deferred = $q.defer();
+                  SelectionService.getLocations()
+                    .then(function(locations) {
+                      deferred.resolve(locations);
+                    });
+                  return deferred.promise;
+            }
           }
       })
 
