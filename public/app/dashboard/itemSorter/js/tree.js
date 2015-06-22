@@ -96,10 +96,6 @@
       var scope = getRootNodesScope();
       scope.expandAll();
     };
-
-    // function parentId(arr) {
-
-    // }
           $scope.folder = false;
           $scope.test = function() {
             if($scope.$modelValue.folder) {
@@ -116,8 +112,7 @@
 
      };
 
-  $scope.data = [ 
-          
+  $scope.data = [          
         {    
           "children":[
                     {

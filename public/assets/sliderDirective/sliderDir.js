@@ -3,7 +3,7 @@ app = angular.module('sliderDir', []);
 app.directive('sliderDirective', function(){
 	return {
 		restrict: "A",
-		templateUrl: "./js/template.html",
+		templateUrl: "/assets/sliderDirective/slidertemplate.html",
 		scope: {
 			data: "="
 		},
@@ -20,7 +20,7 @@ app.directive('sliderDirective', function(){
 		    	scroll: {
 		    		items: 1,
 		    		easing: 'linear',
-		    		duration: 2000,
+		    		duration: 5000,
 		    		timeoutDuration: 0,
 		    		pauseOnHover: "immediate"
 		    	}
