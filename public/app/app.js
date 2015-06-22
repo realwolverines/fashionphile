@@ -5,17 +5,17 @@ var app = angular.module('fashionphile', [ 'ui.router', 'editer', 'toaster', 'ui
 
 //config
 app
-	.config(function($stateProvider, $urlRouterProvider) {
-		$urlRouterProvider.when('', '/');
-		$urlRouterProvider.otherwise('/');
-		$stateProvider
-		 	.state('login', {
-		 			url: '/',
+  .config(function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.when('', '/');
+    $urlRouterProvider.otherwise('/');
+    $stateProvider
+      .state('login', {
+          url: '/',
           templateUrl : 'app/login/loginView.html',
           controller  : 'LoginCtrl'
       })
       .state('selection', {
-      		url: '/selection',
+          url: '/selection',
           templateUrl : 'app/selection/selectionView.html',
           controller  : 'SelectionCtrl',
           resolve: {
