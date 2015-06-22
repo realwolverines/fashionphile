@@ -1,19 +1,23 @@
-<div class="row header text-center">
-  <img src="/assets/img/logo-light.png" alt="fashionphilelogo" class='logo'>
+<div class="row header">
+	<img src="/assets/img/logo-light.png" alt="fashionphilelogo" class='logosmall col-xs-4' /><br>
+	<h6>
+		<span class='locationName'> {{customerLocation.name}}  </span>
+	</h6>
 </div>
 
-	<h1 class='text-center'> Welcome To Fashionphile {{customerLocation.name}}</h1>
-	<h1 class='text-center'>Please Signin To Enter The Queue</h1>
+
+	<h1 class='text-center'> Welcome</h1>
+	<h3 class='text-center'>Please check-in</h3>
 
 <div class="row">
-<p ng-repeat="customer in customers"></p>
+	<p ng-repeat="customer in customers"></p>
 </div>
 
 <div class="row">
 <form class='col-xs-8 col-xs-offset-2' ng-submit="addCustomer(customer)">
 	<div class="form-group requireMe">
 
-		<input type="text" ng-model="customer.name" class='form-control' placeholder="Type your name to enter queue">
+		<input type="text" ng-model="customer.name" class='form-control' placeholder="name">
 		
 	</div>
 
@@ -26,5 +30,5 @@
 </div>
 
 <div class="row ipadFooter">
-  <img src="/assets/img/logo-light.png" alt="fashionphilelogo" class='logosmall text-center'> @ location
+ <span class='navLocation'></span> <img src="/assets/img/logo-light.png" alt="fashionphilelogo" class='logosmall text-center'> @ {{customerLocation.name}}
 </div>
