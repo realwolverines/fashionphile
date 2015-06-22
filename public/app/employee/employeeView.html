@@ -21,11 +21,15 @@
         <tr ng-repeat="customer in customers">
           <td> {{customer.name}} </td>
           <td> <span>{{ customer.joined | timeAgo }}</span></td>
-          <td><button class='btn btn-primary btn-xs' ng-click="helpCustomer(customer)">Help Customer</button></td>
+          <td><button class='btn btn-primary btn-xs' ng-click="helpCustomer(customer);">Help Customer</button></td>
         </tr>
 
       </table>
     </div>
 
+</div>
+	<toaster-container class="bounceIn"></toaster-container>
+</div>
+<div>
     <a ui-sref='login' class="logout">logout</a>
 </div>
