@@ -179,9 +179,11 @@ select.form-control {
 
 /*darker to de-emphasize desire to edit locations*/
 .modalLocations {
+  position: fixed;
+  bottom: 0;
   margin-bottom: 20px;
-  background: #5a5a5a;
-  border-color: #fff;
+  background: #FFFFFF;
+  border-color: #CECECE;
   -webkit-transition: 0.25s;
           transition: 0.25s;
 }
