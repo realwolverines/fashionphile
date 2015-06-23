@@ -1,11 +1,11 @@
 (function(){
-	'use strict';
+  'use strict';
 
 var app = angular.module('fashionphile');
 
 app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerService, customers){
 
-	//populate queue with location-specific list
+  //populate queue with location-specific list
   var location = $state.params.location;
   console.log('walldisplayloc', $state.params.location)
   $scope.customers = customers;
@@ -14,23 +14,23 @@ app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerSe
   //determine wall carousel
 
   if(customers.length > 0) {
-  	$scope.emptyqueue = false;
+    $scope.emptyqueue = false;
   } else {
-  	$scope.emptyqueue = true;
+    $scope.emptyqueue = true;
   }
 
   //$interval hack
 
    $interval(function(location){
-   		var locationParam = $state.params.location;
-   		CustomerService.getCustomers(locationParam)
+      var locationParam = $state.params.location;
+      CustomerService.getCustomers(locationParam)
         .then(function(customers){
-        	//this needs to run only once
-        	if(customers.length > 0) {
-				  		$scope.emptyqueue = false;
-				  	} else {
-				  		$scope.emptyqueue = true;
-				  }
+          //this needs to run only once
+          if(customers.length > 0) {
+              $scope.emptyqueue = false;
+            } else {
+              $scope.emptyqueue = true;
+          }
           $scope.customers = customers;
         }); 
    }, 5000);
@@ -43,32 +43,32 @@ app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerSe
 
   //watch customers helped broadcast
 
-	// $scope.$on('customersHelped', function(event, customers){
-	// 	console.log(customers)
-	// 	$scope.customers = customers;
-	// 	if(customers.length > 0) {
- //  		$scope.emptyqueue = false;
- //  	} else {
- //  		$scope.emptyqueue = true;
+  // $scope.$on('customersHelped', function(event, customers){
+  //  console.log(customers)
+  //  $scope.customers = customers;
+  //  if(customers.length > 0) {
+ //     $scope.emptyqueue = false;
+ //   } else {
+ //     $scope.emptyqueue = true;
  //  }
-	// });
+  // });
 
-	// $scope.$watch('customers', function() {
-	// 	  $scope.customers = customers;
-	//      console.log('hey, customers has changed!');
-	//  });
+  // $scope.$watch('customers', function() {
+  //    $scope.customers = customers;
+  //      console.log('hey, customers has changed!');
+  //  });
 
 
   //wall carousel interval
-		$scope.myInterval = 8000;
-		var slides = $scope.slides = [
-			{image: 'assets/img/helloLovely.jpg'},
-			{image: 'assets/img/springClean.jpg'},
-			{image: 'assets/img/springFling.jpg'}
-		 ];
-		 		 
+    $scope.myInterval = 8000;
+    var slides = $scope.slides = [
+      {image: 'assets/img/helloLovely.jpg'},
+      {image: 'assets/img/springClean.jpg'},
+      {image: 'assets/img/springFling.jpg'}
+     ];
+         
 
-	//tree data and arranging
+  //tree data and arranging
 
     $scope.showIndex = true;
     console.log("Show Index",$scope.showIndex)
