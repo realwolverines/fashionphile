@@ -27,6 +27,7 @@ function createStats(stats) {
       sum += (+(i.helpedAt) - +(i.joined));
     })
     var average = sum/length;
+    console.log(average);
     var averageMins = average/1000/60; 
 
     // sort wait times to find shortest and longest times 

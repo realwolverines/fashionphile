@@ -4,6 +4,52 @@ body {
   height: 100%;
   font-family: 'Muli', sans-serif;
 }
+
+/*barchart directive*/
+
+.chart {
+  position: relative;
+  width: 285px;
+  height: 240px;
+  font-size: 10px;
+}
+.chartInput {
+  margin: 0;
+  padding: 0;
+}
+.axis text {
+  font: 10px sans-serif;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.bar {
+  fill: #2f2f2f;
+  fill-opacity: .9;
+}
+.bar:hover {
+  fill: #E72589;
+}
+.x.axis path {
+  display: none;
+}
+.chartSort {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/*end of barchart directive*/
+
+.queueTime {
+  text-align: right;
+}
+a {
+  cursor: pointer;
+}
 .requireMe:before {
   content: '*';
   position: absolute;
@@ -103,6 +149,7 @@ select.form-control {
 .circle h1 {
   padding-top: 35%;
   margin-bottom: 0;
+  color: #d5d5d5;
 }
 .square {
   border-radius: 4px;
@@ -110,7 +157,9 @@ select.form-control {
   color: #d5d5d5;
   height: 200px;
   width: 200px;
+
 }
+
 .square h1 {
   padding-top: 35%;
   margin-bottom: 0;
@@ -159,12 +208,27 @@ select.form-control {
   font-size: 18px;
   position: relative;
   right: 10px;
+  color: #343434;
+}
+.minutesCust {
+  font-size: 18px;
+  position: relative;
+  right: 10px;
+  color: #d5d5d5;
 }
 .average {
   font-size: 14px;
   position: relative;
   left: -30px;
   margin-top: 0;
+  color: #d5d5d5;
+}
+.averageCust {
+  font-size: 14px;
+  position: relative;
+  left: -30px;
+  margin-top: 0;
+  color: #D5D5D5;
 }
 /* added for edit icon */
 .editLocation:before {
@@ -198,6 +262,11 @@ select.form-control {
   padding: 0 0 20px;
 }
 
+.customerTVList {
+  font-size: 1.5em;
+  padding: 0 0 20px;
+}
+
 .icons {
   margin-bottom: 10px;
 }
@@ -207,7 +276,26 @@ select.form-control {
   margin-left: 12px;
   content:url('../img/map.png');
 }
-
+a.storeStats {
+  font-size: 1.5em;
+  text-decoration: none;
+  color: #262626;
+  border-bottom: 5px solid #262626;
+  text-align: center;
+}
+a.storeStats:hover{
+  color: #3434;
+  cursor: pointer;
+}
+/* storeStats bottom border*/
+.storeBorder {
+  margin: 0 0 10px;
+  border-bottom: 2px solid black;
+}
+/*.storeBorder:hover{
+  color: #efef;
+}
+*/
 #locationName{
   padding-top: 5px;
 }

@@ -55,9 +55,8 @@ $scope.startLocationEditing = function(location){
      $scope.editedlocation = null;
  };
 
-	$scope.locations = locations;
+  $scope.locations = locations;
 	console.log($window.location);
-
 	var currentStore = $window.location.hash.substr(2, $window.location.hash.length)
 
 })
