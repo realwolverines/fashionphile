@@ -41,7 +41,7 @@ select.form-control {
 }
 .logosmall {
   max-width: 200px;
-  margin: 0;
+  margin-top: 8px;
   padding: 0;
 }
 .login {
@@ -83,10 +83,10 @@ select.form-control {
 }
 .header {
   background: #434343;
-  padding: 20px 20px 5px;
+  padding: 20px 20px 20px;
 }
 .logout {
-  margin: 20px 20px;
+  margin: 10px 10px;
   padding: 10px 20px;
   border: 1px solid #2f2f2f;
   border-radius: 4px;
@@ -179,9 +179,11 @@ select.form-control {
 
 /*darker to de-emphasize desire to edit locations*/
 .modalLocations {
+  position: fixed;
+  bottom: 0;
   margin-bottom: 20px;
-  background: #5a5a5a;
-  border-color: #fff;
+  background: #FFFFFF;
+  border-color: #CECECE;
   -webkit-transition: 0.25s;
           transition: 0.25s;
 }
@@ -197,8 +199,7 @@ select.form-control {
 }
 
 .icons {
-  padding: 0;
-  margin: 0;
+  margin-bottom: 10px;
 }
 
 .navLocation {
@@ -207,8 +208,13 @@ select.form-control {
   content:url('../img/map.png');
 }
 
+#locationName{
+  padding-top: 5px;
+}
+
 .locationName {
   color: white;
+  display: inline;
 }
 
 .locationName::before{
