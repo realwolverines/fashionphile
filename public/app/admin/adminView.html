@@ -20,7 +20,7 @@
     <div class="row">
       <div class="center-block circle">
         <div>
-            <h1>{{averageWait}}
+            <h1>{{average | date:'mm'}}
                 <span class='minutes'>mins</span>
             </h1>
             <h3 class='average'>average</h3>
@@ -30,7 +30,7 @@
 
     <div class="row">
       <div class="col-xs-6 col-xs-offset-3">
-        <h2 class='leftNum'>32 
+        <h2 class='leftNum'>{{longestWait | date:'mm'}}
           <span class='minutes'>mins</span>
         </h2>
         <h4 class='leftText'>longest</h4>
@@ -39,7 +39,7 @@
 
     <div class="row">
       <div class="col-xs-6 col-xs-offset-3">
-        <h2 class='leftNumSmall'>2 
+        <h2 class='leftNumSmall'>{{shortestWait | date:'mm'}}
           <span class='minutes'>mins</span>
         </h2>
         <div class='shortestBar'></div>
@@ -55,8 +55,8 @@
     <div class="row">
       <div class="center-block square">
           <div>
-              <h1>24</h1>
-              <h3>today</h3>
+              <h1>{{averageDailyCust}}</h1>
+              <h3>average daily</h3>
           </div>
       </div>
     </div>
@@ -64,41 +64,17 @@
     <div class="row">
       <div class="col-xs-8">      
           <div class='pull-right rightNum'>
-            <h2>80</h2>
+            <h2>{{totalCustomers}}</h2>
           </div>
           <div class='pull-right rightTextContainer'>
-            <h3>this week</h3>
+            <h3>customers</h3>
             <h4>total</h4>
           </div>  
       </div>   
     </div> <!-- end of weeklytotal -->
-    <div class="row">
-      <div class="col-xs-8 ">
-        <div class='pull-right rightNum'>
-          <h2>69 </h2>
-        </div>
-        <div class='pull-right rightTextContainer'>
-          <h3>weekly</h3>
-          <h4>average</h4>
-        </div> 
-      </div>
-    </div> <!-- end of weeklyaverage -->
   </div> <!-- end of rightviewcontainer -->
 </div> <!-- end MAIN row -->
 
-
-<div class="row">
-<div class='col-xs-3 col-xs-offset-2'>
-  <h3><a ui-sref='employee' class='btn btn-default'>EmployeeView</a></h3>
-</div>
-
-
-<div class='col-xs-3 col-xs-offset-2'>
-  <h3><a ui-sref='walldisplay' class='btn btn-default'>walldisplay</a></h3>
-</div>
-
-
-</div>
 
 <!--Individual store stats -->
 <h1 class='text-center'>Store Stats</h1>

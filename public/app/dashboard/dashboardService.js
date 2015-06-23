@@ -10,7 +10,7 @@ app.service('dashboardService', function($http, $q){
       }).then(function(stats){
         console.log(stats.data); 
         dfd.resolve(stats.data); 
-      })
+      }) 
     return dfd.promise; 
   }
 

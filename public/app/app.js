@@ -85,13 +85,13 @@ app
           templateUrl : 'app/admin/adminView.html',
           controller  : 'adminCtrl',
           resolve: {
-            stats: function(adminService, $q){
+            adminStats: function(adminService, $q){
               var dfd = $q.defer();
                 adminService.getStats()
-                .then(function(stats){
-                  dfd.resolve(stats[0]);   
+                .then(function(adminStats){
+                  dfd.resolve(adminStats[0]);
                 });
-              return dfd.promise; 
+              return dfd.promise;
             },
             locations: function($q, SelectionService) {
               var deferred = $q.defer();
@@ -100,7 +100,7 @@ app
                       deferred.resolve(locations);
                     });
                   return deferred.promise;
-            }
+              }
           }
       })
 
@@ -114,18 +114,11 @@ app
               var dfd = $q.defer();
                 adminService.getStatsByLocation(location)
                 .then(function(stats){
-                  dfd.resolve(stats);
+                  console.log("dashboard routers stats.data is", stats.data); 
+                  dfd.resolve(stats.data[0]);
                 });
               return dfd.promise;
             }
-          //   // locations: function($q, SelectionService) {
-          //   //   var deferred = $q.defer();
-          //   //       SelectionService.getLocations()
-          //   //         .then(function(locations) {
-          //   //           deferred.resolve(locations);
-          //   //         });
-          //   //       return deferred.promise;
-          //   // }
           }
       }); 
   });

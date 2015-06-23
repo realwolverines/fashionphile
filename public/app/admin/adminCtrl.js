@@ -1,42 +1,16 @@
 var app = angular.module('fashionphile');
 
-app.controller('adminCtrl', function($scope, SelectionService, $location, locations, $state, $stateParams){
-   
-//    $scope.goToPage = function(locationId, viewId){
-//     console.log("LOCATION ID IS", locationId); 
-//     locationId = locationId[0].toString();
-//     var view = viewId[0].toString().replace(/[' ]/g, '').toLowerCase();
-//     console.log('locationId is ', locationId);
-
-//     SelectionService.getLocation(locationId).then(function(response){
-//       console.log(response)
-//       var locationParam = response.nameparam
-//       console.log(locationParam)
-//       console.log("view is " + view, "and location is " + locationParam); 
-//       $location.path("/" + view + "/" + locationParam);
-//     });
-// };
-
-    // $scope.stats = stats;
-    // $scope.averageWait = stats.averageTime; 
+app.controller('adminCtrl', function($scope, $location, locations, adminStats, $state, $stateParams){
 
     $scope.locations = locations;
 
-    $scope.stats = stats;
+    $scope.stats = adminStats;
 
-    console.log(stats);
-
-    //Format average mins 
-    var x = stats.average;
-    var d = moment.duration(x, 'milliseconds');
-    var mins = Math.floor(d.asMinutes()) * 60;
-    console.log("mins: ", mins);
-
-    $scope.averageWait = mins;
-    $scope.shortestWait = stats.shortestWait;
-    
-    // $scope.longestWait = stats.longestWait;
-    // $scope.totalCustomers = stats.totalCustomers;
+    $scope.average = adminStats.average; 
+    $scope.longestWait = adminStats.longestWait; 
+    $scope.shortestWait = adminStats.shortestWait; 
+    $scope.totalCustomers = adminStats.totalCustomers; 
+    $scope.averageDailyCust = adminStats.averageDailyCust;
 
     //GO TO ADMIN VIEW OF LOCATION 
     $scope.goToAdminView = function(location){
