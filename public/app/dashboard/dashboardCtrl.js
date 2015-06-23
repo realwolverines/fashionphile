@@ -2,7 +2,7 @@
 
 var app = angular.module('fashionphile');
 
-app.controller('dashboardCtrl', function($scope, $location, $state, stats){
+app.controller('dashboardCtrl', function($scope, $location, $state, stats, customerLocation){
    
     $scope.stats = stats;
     $scope.average = stats.average;
@@ -40,6 +40,7 @@ app.controller('dashboardCtrl', function($scope, $location, $state, stats){
      }];
 
 
+  	$scope.customerLocation = customerLocation;
     //GO TO TV VIEW OF LOCATION 
     $scope.goToTvView = function(){
     	var location = $state.params.id;

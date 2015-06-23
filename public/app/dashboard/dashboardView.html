@@ -1,5 +1,11 @@
 <div class="row header">
-  <a ui-sref="employee ({location: customers})"><img src="/assets/img/logo-light.png" alt="fashionphilelogo" class='logosmall col-xs-4'></a>
+  <div class="col-xs-8 pull-left">
+    <a ui-sref="selection"><img src="/assets/img/logo-light.png" alt="fashionphilelogo" class='logosmall col-xs-4'></a>
+    <br>
+    <h6 id='locationName'>
+      <span class='locationName'> {{customerLocation.name}}  </span>
+    </h6>
+  </div>
 
   <div class="col-xs-4 pull-right">
     <div class='col-xs-5 col-sm-4'>

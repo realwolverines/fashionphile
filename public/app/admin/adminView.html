@@ -1,5 +1,11 @@
 <div class="row header">
-  <img src="/assets/img/logo-light.png" alt="fashionphilelogo" class='logosmall col-xs-4'>
+  <div class="col-xs-8 pull-left">
+    <a ui-sref="selection"><img src="/assets/img/logo-light.png" alt="fashionphilelogo" class='logosmall col-xs-4'></a>
+    <br>
+    <h6 id='locationName'>
+      <span class='locationName'> All Locations </span>
+    </h6>
+  </div>
 
   <div class="col-xs-4 pull-right">
     <div class='col-xs-5 col-sm-4'>
@@ -29,7 +35,7 @@
     </div>
 
     <div class="row">
-      <div class="col-xs-6 col-xs-offset-3">
+      <div class="col-xs-5 col-xs-offset-4">
         <h2 class='leftNum'>{{longestWait | date:'mm'}}
           <span class='minutes'>mins</span>
         </h2>
@@ -38,7 +44,7 @@
     </div>
 
     <div class="row">
-      <div class="col-xs-6 col-xs-offset-3">
+      <div class="col-xs-4 col-xs-offset-4">
         <h2 class='leftNumSmall'>{{shortestWait | date:'mm'}}
           <span class='minutes'>mins</span>
         </h2>
@@ -87,11 +93,11 @@
     </div> <!-- end of weeklytotal -->
   </div> <!-- end of rightviewcontainer -->
 </div> <!-- end MAIN row -->
-
+</div>
 
 <!--Individual store stats -->
 <div class="row">
-  <h1 class='text-center'>Store Stats</h1>    
+  <h1 class="text-center">Store Stats</h1>    
   <div class="col-xs-4 col-xs-offset-4">
     <div class='storeBorder' ng-repeat="location in locations" >
       <div ng-model="location.name" ng-change="getLocations(locationId)">
