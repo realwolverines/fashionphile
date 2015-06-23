@@ -30,8 +30,18 @@
   </div>
 
 
-
-  <div class='col-xs-3 col-xs-offset-1'>
+  <div class='col-xs-3 col-xs-offset-0'>
     <h3><a ui-sref='stats' class='btn btn-default'>stats</a></h3>
   </div>
+
+
 </div>
+  <div style="height: 305px">
+    <carousel interval="myInterval">
+      <slide ng-repeat="slide in slides" active="slide.active">
+        <img ng-src="{{slide.image}}" style="margin:auto;">
+        <div class="carousel-caption">
+        </div>
+      </slide>
+    </carousel>
+  </div>
