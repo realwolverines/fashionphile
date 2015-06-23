@@ -63,6 +63,22 @@ app
               }
           }
       })
+      .state('walldisplay', {
+          url: '/walldisplay/:location',
+          templateUrl : 'app/wallDisplay/wallDisplayView.html',
+          controller  : 'WallDisplayCtrl',
+          resolve: {
+            customers: function($state, $stateParams, CustomerService, $q){
+              var location = $stateParams.location; 
+              var dfd = $q.defer(); 
+                CustomerService.getCustomers(location)
+                  .then(function(customers){
+                    dfd.resolve(customers); 
+                  }); 
+                return dfd.promise; 
+              }
+          }
+      })
       .state('admin', {
           url: '/admin',
           templateUrl : 'app/admin/adminView.html',
