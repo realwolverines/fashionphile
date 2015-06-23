@@ -1,10 +1,14 @@
 (function(){
   'use strict';
 
-var app = angular.module('fashionphile', [ 'ui.router', 'editer', 'toaster']);
+var app = angular.module('fashionphile', [ 'ui.router', 'weekly.barchart', 'editer', 'ui.tree', 'toaster', 'sliderDir', 'ui.bootstrap']);
 
 //config
 app
+  // .run(function($state,$rootScope){
+  //   $rootScope.$state = $state;
+  // })
+
   .config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.when('', '/');
     $urlRouterProvider.otherwise('/');

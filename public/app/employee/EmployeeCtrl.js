@@ -3,7 +3,7 @@
 
 var app = angular.module('fashionphile');
 
-app.controller('EmployeeCtrl', function($scope, $state, $location, CustomerService, customers, toaster){
+app.controller('EmployeeCtrl', function($scope, $interval, $state, $location, CustomerService, customers, toaster){
 
   var location = $state.params.id;
   $scope.customers = customers; 
@@ -16,23 +16,32 @@ app.controller('EmployeeCtrl', function($scope, $state, $location, CustomerServi
         var location = customer.location
         CustomerService.getCustomers(location)
         .then(function(customers){
+          // $rootScope.$emit('customersHelped', customers);
           $scope.customers = customers;
-        }); 
-          
+        });      
       }); 
   }
+
+  //$interval hack
+
+   $interval(function(){
+      var locationParam = $state.params.location;
+      console.log('intervalEmployeeCtrl', locationParam)
+      CustomerService.getCustomers(locationParam)
+        .then(function(customers){
+          $scope.customers = customers;
+        }); 
+   }, 5000);
+
 
 });
 
 app.filter('timeAgo', ['$interval', function ($interval){
-
     // trigger digest every 60 seconds
-    $interval(function (){}, 60000);
-
+    $interval(function (){}, 30000);
     function fromNowFilter(time){
       return moment(time).fromNow();
     }
-
     fromNowFilter.$stateful = true;
     return fromNowFilter;
 }]); 

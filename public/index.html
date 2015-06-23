@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="fashionphile">
+<html lang='en' ng-app='fashionphile'>
 <head>
-  <meta charset="utf-8">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
+  <meta charset='utf-8'>
+  <!-- <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'> -->
   <title>fashionphileQueue</title>
-  <!-- <meta name="description" content="">
-  <meta name="author" content=""> -->
+  <!-- <meta name='description' content='>
+  <meta name='author' content='> -->
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
+   <intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" />
    <link href='http://fonts.googleapis.com/css?family=Muli:300' rel='stylesheet' type='text/css'>
 
   <!-- CSS
@@ -19,57 +19,61 @@
 
    <!-- sliderDirective
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" type="text/css" href="assets/sliderDirective/slider.css">
+  <link rel='stylesheet' type='text/css' href='app/directives/slider.css'>
 
   <!-- animateCSS -->
-  <link rel="stylesheet" href="http://cdn.jsdelivr.net/animatecss/2.1.0/animate.min.css">
-  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/yeti/bootstrap.min.css" rel="stylesheet">
+  <link rel='stylesheet' href='http://cdn.jsdelivr.net/animatecss/2.1.0/animate.min.css' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/yeti/bootstrap.min.css' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel='stylesheet' href='assets/css/style.css' type='text/css'>
 
   <!-- foripadonlyview -->
-  <link rel="stylesheet" media="all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape)" href="assets/css/ipad-landscape.css" />
+  <link rel='stylesheet' media='all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape)' href='assets/css/ipad-landscape.css' />
 
-  <!-- Toaster
+  <!-- Toggle & Item Sorter CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="assets/toaster/toaster.css" rel="stylesheet" />
+  <link rel='stylesheet' href='/app/wallDisplay/itemSorter/css/bootstrap-switch.css' type='text/css'>
+  <link rel='stylesheet' href='/app/wallDisplay/itemSorter/dist/angular-ui-tree.min.css' type='text/css'>
+  <link rel='stylesheet' href='/app/wallDisplay/itemSorter/css/demo.css' type='text/css'>
 
-  <!-- itemSorter
+  <!-- Toaster CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<!--   <link rel="stylesheet" href="app/dashboard/itemSorter/dist/angular-ui-tree.min.css">
-  <link rel="stylesheet" href="app/dashboard/itemSorter/css/demo.css"> -->
+  <link href='assets/toaster/toaster.css' rel='stylesheet' />
+
 
 
   <!-- CDN Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.js"></script>
+  <script src='http://code.jquery.com/jquery-1.11.3.js'></script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.16/angular-route.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular-animate.js'></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
 
-  <!-- ngRoute
+  <!-- Anuglar bootstrap
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <!-- <script src="../bower_components/angular-route/angular-route.js"></script> -->
+  <script type='text/javascript' src='/app/wallDisplay/itemSorter/js/jquery.1.9.1.min.js'></script>
+  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js'></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.16/angular-route.js"></script>
+    <!-- Toggle & ItemSorter
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script type='text/javascript' src='/app/wallDisplay/itemSorter/dist/angular-ui-tree.js'></script>
+
+    <!-- sliderDirective
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src='http://code.jquery.com/jquery-1.8.2.min.js' type='text/javascript'></script>
+  <script src='app/directives/jquery.carouFredSel-6.0.4-packed.js' type='text/javascript'></script>
+  <script src='app/directives/sliderDir.js' type='text/javascript'></script>
+  <script type='text/javascript' src='/app/wallDisplay/itemSorter/js/bootstrap-switch.js'></script>
 
     <!-- Toaster
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular-animate.js"></script>
-  <script src="assets/toaster/toaster.js"></script>
+  <script src='assets/toaster/toaster.js'></script>
 
-      <!-- itemSorter
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<!--   // <script type="text/javascript" src="app/dashboard/itemSorter/dist/angular-ui-tree.js"></script>
-  // <script type="text/javascript" src="app/dashboard/itemSorter/js/tree.js"></script>
-  // <script src="http://code.jquery.com/jquery-1.8.2.min.js" type="text/javascript"></script> -->
-
-     <!-- sliderDirective
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script src="http://code.jquery.com/jquery-1.8.2.min.js" type="text/javascript"></script>
-  <script src="assets/sliderDirective/jquery.carouFredSel-6.0.4-packed.js" type="text/javascript"></script>
-  <script src="assets/sliderDirective/sliderDir.js" type="text/javascript"></script>
 
    <!-- My Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -77,33 +81,31 @@
   <script src='/app/login/LoginCtrl.js'></script>
   <script src='/app/login/LoginService.js'></script>
   <script src='/app/selection/SelectionCtrl.js'></script>
-  <!-- <script src='/app/directives/menu/MenuCtrl.js'></script> -->
   <script src='/app/employee/EmployeeCtrl.js'></script>
   <script src='/app/customer/CustomerCtrl.js'></script>
-  <script src="/app/admin/adminCtrl.js"></script>
-  <script src="/app/dashboard/dashboardCtrl.js"></script>
+  <script src='/app/admin/adminCtrl.js'></script>
+  <script src='/app/dashboard/dashboardCtrl.js'></script>
   <script src='/app/customer/CustomerService.js'></script>
   <script src='/app/wallDisplay/WallDisplayCtrl.js'></script>
 
   <!-- Service Scripts --> 
-  <script src="/app/login/LoginService.js"></script>
-  <script src="/app/selection/SelectionService.js"></script>
-  <script src="/app/customer/CustomerService.js"></script>
-  <script src="/app/admin/adminService.js"></script>
-  <script src="/app/wallDisplay/WallDisplayService.js"></script>
-  <script src="/app/dashboard/dashboardService.js"></script>
+  <script src='/app/login/LoginService.js'></script>
+  <script src='/app/selection/SelectionService.js'></script>
+  <script src='/app/customer/CustomerService.js'></script>
+  <script src='/app/admin/adminService.js'></script>
+  <script src='/app/wallDisplay/WallDisplayService.js'></script>
+  <script src='/app/dashboard/dashboardService.js'></script>
 
   <!-- Directives -->
-  <script src="/app/directives/editerDirective.js"></script>
-
-<!-- angular bootstrap -->
-<!-- <script src='/app/ui-bootstrap-tpls-0.13.0.js'></script> -->
+  <script src='/app/directives/editerDirective.js'></script>
+  <script src='/app/directives/notifyDirective.js'></script>
+  <script src='/app/directives/barchart.js'></script>
 
 </head>
 
 <body>    
-<div class="container-fluid">
-  <div class="ui-view"></div>
+<div class='container-fluid'>
+  <div class='ui-view'></div>
 </div>  
 </body>
 </html>
