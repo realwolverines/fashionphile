@@ -90,7 +90,7 @@ select.form-control {
   padding: 10px 20px;
   border: 1px solid #2f2f2f;
   border-radius: 4px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
 }
 .circle {
