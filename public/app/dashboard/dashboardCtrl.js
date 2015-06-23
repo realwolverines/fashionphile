@@ -13,32 +13,31 @@ app.controller('dashboardCtrl', function($scope, $location, $state, stats, custo
     
 
     //admin weekly data
-    $scope.data = [
-     {
+    $scope.data = 
+    [{
         "day": "Mon",
-        "count": 6
+        "count": 0
      },
      {
         "day": "Tue",
-        "count": 3
+        "count": 1
      },
      {
         "day": "Wed",
-        "count": 5
+        "count": 0
      },
      {
         "day": "Thu",
-        "count": 7
+        "count": 3
      },        
      {
         "day": "Fri",
-        "count": 9
+        "count": 6
      },
      {
         "day": "Sat",
-        "count": 0
-     }];
-
+        "count": 5
+     }];    
 
   	$scope.customerLocation = customerLocation;
     //GO TO TV VIEW OF LOCATION 

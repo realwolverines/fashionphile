@@ -28,7 +28,7 @@
             <h1>{{average | date:'mm'}}
                 <span class='minutesCust'>mins</span>
             </h1>
-            <h3 class='average'>average</h3>
+            <h3 class='averageCust'>average</h3>
         </div>
       </div>
     </div>
@@ -58,12 +58,14 @@
     <h1>customers</h1>
    
     <div class="row">
-      <div class="center-block square">
+      <bar-chart data="data"></bar-chart>
+
+<!--       <div class="center-block square">
           <div>
               <h1>{{averageDailyCust}}</h1>
               <h3>average daily</h3>
           </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="row">
@@ -75,7 +77,18 @@
             <h3>customers</h3>
             <h4>total</h4>
           </div>  
-      </div>   
+      </div> 
+
+    <div class="row">
+      <div class="col-xs-8">      
+          <div class='pull-right rightNum'>
+            <h2>{{averageDailyCust}}</h2>
+          </div>
+          <div class='pull-right rightTextContainer'>
+            <h3>average</h3>
+            <h4>daily</h4>
+          </div>  
+      </div>    
     </div> <!-- end of weeklytotal -->
   </div> <!-- end of rightviewcontainer -->
 </div> <!-- end MAIN row -->
