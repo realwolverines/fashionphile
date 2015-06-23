@@ -65,7 +65,7 @@ app
       })
       .state('walldisplay', {
         url: '/walldisplay',
-        templateUrl: 'app/wallDisplay/itemSorter/dashboardView.html',
+        templateUrl: 'app/wallDisplay/walldisplayView.html',
         controller: 'WallDisplayCtrl'
       })
 
