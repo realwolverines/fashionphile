@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-var app = angular.module('fashionphile', [ 'ui.router', 'editer', 'toaster']);
+var app = angular.module('fashionphile', [ 'ui.router', 'editer', 'toaster', 'ui.bootstrap']);
 
 //config
 app
@@ -64,20 +64,9 @@ app
           }
       })
       .state('walldisplay', {
-        url: '/walldisplay/:location',
-        templateUrl: 'app/wallDisplay/wallDisplayView.html',
-        controller: 'WallDisplayCtrl',
-        resolve: {
-          customers: function($state, $stateParams, CustomerService, $q){
-            var location = $stateParams.location;
-            var dfd = $q.defer()
-              CustomerService.getCustomers(location)
-              .then(function(customers){
-                dfd.resolve(customers);
-              })
-              return dfd.promise;
-          }
-        }
+        url: '/walldisplay',
+        templateUrl: 'app/wallDisplay/itemSorter/dashboardView.html',
+        controller: 'WallDisplayCtrl'
       })
 
       .state('admin', {

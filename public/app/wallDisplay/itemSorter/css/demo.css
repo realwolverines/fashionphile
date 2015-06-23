@@ -35,3 +35,28 @@
 .angular-ui-tree-handle:hover + .newHover {
     display: block;
 }
+
+/*Carousel*/
+
+.carousel-indicators{
+    display: none;
+}
+
+.carousel-control{
+    display: none;
+}
+
+#slides_control > div{
+  height: 200px;
+}
+img{
+  margin:auto;
+  width: 4000px;
+}
+#slides_control {
+  position:absolute;
+  width: 400px;
+  left:50%;
+  top:20px;
+ margin-left:-200px;
+}
