@@ -109,7 +109,6 @@
         image: input
        });
        $scope.imageUrl = "";
-
      };
 
   $scope.data = [          

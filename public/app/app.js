@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-var app = angular.module('fashionphile', [ 'ui.router', 'editer', 'toaster', 'ui.tree', 'treeApp']);
+var app = angular.module('fashionphile', [ 'ui.router', 'editer', 'toaster', 'ui.tree', 'treeApp', 'sliderDir']);
 
 //config
 app
@@ -78,9 +78,9 @@ app
             }
           }
       })
-      .state('dashboard', {
-        url: '/dashboard',
-        templateUrl :'app/dashboard/itemSorter/dashboardView.html',
+      .state('wallDisplay', {
+        url: '/walldisplay',
+        templateUrl :'app/wallDisplay/itemSorter/wallDisplay.html',
         controller : 'treeCtrl'
       })
 

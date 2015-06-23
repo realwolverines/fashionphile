@@ -22,19 +22,18 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-
-
 .group-title {
     background-color: #687074 !important;
     color: #FFF !important;
     font-family: times;
 }
-
-
 .angular-ui-tree-handle:hover + .newHover {
     display: block;
 }
 
+#CheckBox {
+    float: right;
+}
 
 /*Slideout CSS*/
 
@@ -92,7 +91,4 @@
 .nodeIndex {
     font-size: 40px;
     color: gray;
-}
-.caroufredsel_wrapper {
-    width: 100%;
 }

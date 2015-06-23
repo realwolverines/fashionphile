@@ -1,18 +1,31 @@
 <div id="slideout">
-    <span class="btn-lg glyphicon glyphicon-cog"></span>
+    <span class="btn-lg glyphicon glyphicon-cog" ng-click="open()" ng-class="{'active': switchs}"></span>
   <div id="slideout_inner">
 
   <div>
     <h2><span class="btn-lg glyphicon glyphicon-cog"></span>Settings</h2>
   </div>
 
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" data-toggle="toggle" class="toggle">
-      Image slider
-    </label>
+  <div  class="options">
+    <div>
+        <h3>Image Slider:</h3> 
+        <input id="CheckBox" type="checkbox" data-off-text="OFF" data-on-text="ON" checked="true" class="BSswitch" ng-click="toggle === !toggle" ng-model="toggle">
+    </div>
+    <div>
+        <h3>Direction:</h3> 
+        <input id="CheckBox" type="checkbox" data-off-text="Right" data-on-text="Left" checked="false" class="BSswitch" ng-click="direction()">
+    </div>
+    <div>  
+      <h3>Speed:</h3> 
+       <select class="selectpicker">
+        <option value="">Slow</option>
+        <option value="">Medium</option>
+        <option value="">Fast</option>
+      </select>
+     </div> 
   </div>
-
+  <hr>
+  <!-- UI-TREE -->
 <div class="container">
   </br>
     </br>
@@ -23,7 +36,7 @@
 
     <form>
   <div class="input-group">
-  <input type="text" class="form-control" placeholder="Add Image URL">
+  <input type="text" class="form-control" placeholder="Add Image URL" ng-model="imageUrl">
   <span class="input-group-btn">
     <button class="btn btn-default glyphicon glyphicon-plus" ng-click="newImage(imageUrl)" type="button"></button>
   </span>
@@ -67,10 +80,8 @@
 </div>
 <!-- END SLIDEOUT -->
 
-
-
-
-   <div id="wrapper"> 
+<!-- Carousel -->
+   <div id="wrapper" ng-show="toggle"> 
       <div id="carousel">
      
           <div>

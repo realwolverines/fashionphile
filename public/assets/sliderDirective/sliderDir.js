@@ -5,15 +5,28 @@ app.directive('sliderDirective', function(){
 		restrict: "A",
 		templateUrl: "/assets/sliderDirective/slidertemplate.html",
 		scope: {
-			data: "="
+			data: "=",
+			toggle: "&",
+			newImage: "&"
 		},
 		link: function(scope, elem, attr){
+			scope.toggs = $('#CheckBox')[0].value;
+			console.log("data", scope.data);
+			scope.active = false;
+			scope.open = function(){
+				!scope.active;
+			}
+
+			// scope.toggle = function(url){
+			// 	console.log("Togggggle")
+			// 	data.image = url;
+			// }
+			$('.BSswitch').bootstrapSwitch('state', true);	
+
 				var $c = $('#carousel'),
 				$w = $(window);
 				console.log("$c", scope);
-				// var itemCount = scope.data.array
-				// console.log("carousel", carousel);
-		  
+
 		    $c.carouFredSel({
 		    	direction: "left",
 		    	// items: itemCount,
@@ -25,6 +38,16 @@ app.directive('sliderDirective', function(){
 		    		pauseOnHover: "immediate"
 		    	}
 		    });
+		    	$w.bind('resize.example', function() {
+		var nw = $w.width();
+		if (nw < 990) {
+			nw = 990;
+		}
+ 
+		$c.width(nw * 3);
+		$c.parent().width(nw);
+ 
+	}).trigger('resize.example');
 		}
 	}
 })
