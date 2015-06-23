@@ -3,7 +3,9 @@
 
 var app = angular.module('fashionphile');
 
-app.controller('EmployeeCtrl', function($scope, $interval, $state, $location, CustomerService, customers, toaster){
+app.controller('EmployeeCtrl', function($scope, $interval, $state, $location, CustomerService, customers, customerLocation, toaster){
+
+  $scope.customerLocation = customerLocation;
 
   var location = $state.params.id;
   $scope.customers = customers; 

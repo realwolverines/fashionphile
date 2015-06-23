@@ -63,7 +63,18 @@ app
                     dfd.resolve(customers); 
                   }); 
                 return dfd.promise; 
-              }
+              },
+            customerLocation: function($q, $state, $stateParams, SelectionService) {
+              var nameParam = $stateParams.location; 
+              console.log('nameparam', nameParam)
+              var deferred = $q.defer();
+                SelectionService.getLocationByParam(nameParam)
+                  .then(function(location) {
+                    var currentLocation = location[0];
+                    deferred.resolve(currentLocation);
+                });
+                return deferred.promise;
+            }
           }
       })
       .state('walldisplay', {
