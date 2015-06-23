@@ -1,19 +1,11 @@
 <div class="row header">
-  <img src="/assets/img/logo-light.png" alt="fashionphilelogo" class='logosmall col-xs-4'>
-
-  <div class="col-xs-4 pull-right">
-    <div class='col-xs-5 col-sm-4'>
-      <a ui-sref='walldisplay' id='walldisplay' class='btn btn-default'></a>
-    </div>
-    <div class='col-xs-5 col-sm-4'>
-      <a ui-sref='admin' id='stats' class='btn btn-default'></a>
-    </div>
-  </div>
-
+  <img src="/assets/img/logo-light.png" alt="fashionphilelogo" class='logosmall pull-left'>
 </div>
-<div class="row"> 
 
-<!-- left view -->
+<div class="row">
+
+LOCATION DASHBOARD
+<!-- left view --> 
   <div class="col-xs-6 text-center">
     <h1>the wait</h1>
 
@@ -75,12 +67,6 @@
   </div> <!-- end of rightviewcontainer -->
 </div> <!-- end MAIN row -->
 
-
-<!--Individual store stats -->
-<h1 class='text-center'>Store Stats</h1>
-<div ng-repeat="location in locations" >
-    <!-- location name -->
-    <div ng-model="location.name" ng-change="getLocations(locationId)">
-        <div ng-click="goToAdminView(location.name)">{{location.name}}</a></div>
-   </div>
 </div>
+
+<pre> {{stats | json}}</pre>

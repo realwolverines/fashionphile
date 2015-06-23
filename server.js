@@ -111,5 +111,6 @@ app.post('/api/customer/', QueueCtrl.add);
 app.put('/api/customer/:id', QueueCtrl.helpCustomer); 
 
 app.get('/api/stats', StatsCtrl.getStats); 
+app.get('/api/stats/:id', StatsCtrl.getStatsByLocation); 
 
 

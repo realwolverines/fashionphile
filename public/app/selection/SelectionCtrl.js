@@ -48,7 +48,7 @@ $scope.startLocationEditing = function(location){
      SelectionService.saveLocation(location).then(function(){
            SelectionService.getLocations()
            .then(function(locations){
-             $scope.locationss = locations;
+             $scope.locations = locations;
            })
          })
      location.editing = false;

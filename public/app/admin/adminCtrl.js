@@ -1,27 +1,23 @@
-(function(){
-	'use strict';
-
 var app = angular.module('fashionphile');
 
-app.controller('adminCtrl', function($scope, adminService, stats){
+app.controller('adminCtrl', function($scope, $location, locations, adminStats, $state, $stateParams){
 
-    $scope.stats = stats;
+    $scope.locations = locations;
 
-    console.log(stats);
+    $scope.stats = adminStats;
 
-    //Format average mins 
-    var x = stats.average;
-    var d = moment.duration(x, 'milliseconds');
-    var mins = Math.floor(d.asMinutes()) * 60;
-    console.log("mins: ", mins);
+    $scope.average = adminStats.average; 
+    $scope.longestWait = adminStats.longestWait; 
+    $scope.shortestWait = adminStats.shortestWait; 
+    $scope.totalCustomers = adminStats.totalCustomers; 
+    $scope.averageDailyCust = adminStats.averageDailyCust;
 
-    $scope.averageWait = mins;
+    //GO TO ADMIN VIEW OF LOCATION 
+    $scope.goToAdminView = function(location){
+      console.log('loc loc', location);
+      var locationId = location.toString().replace(/[' ]/g, '').toLowerCase();
+      console.log("dashboard view is ", locationId);
+      $location.path('/dashboard/' + locationId);
+    }
 
-    $scope.shortestWait = stats.shortestWait;
-    
-    // $scope.longestWait = stats.longestWait;
-    // $scope.totalCustomers = stats.totalCustomers;
-
-  });
-
-})();
+});
