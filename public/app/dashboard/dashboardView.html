@@ -1,10 +1,23 @@
 <div class="row header">
-  <img src="/assets/img/logo-light.png" alt="fashionphilelogo" class='logosmall pull-left'>
-</div>
+  <div class="col-xs-8 pull-left">
+    <a ui-sref="selection"><img src="/assets/img/logo-light.png" alt="fashionphilelogo" class='logosmall col-xs-4'></a>
+    <br>
+    <h6 id='locationName'>
+      <span class='locationName'> {{customerLocation.name}}  </span>
+    </h6>
+  </div>
 
+  <div class="col-xs-4 pull-right">
+    <div class='col-xs-5 col-sm-4'>
+        <div ng-click="goToTvView()" id='walldisplay' class='btn btn-default'></div>
+    </div>
+    <div class='col-xs-5 col-sm-4'>
+        <a ui-sref='admin' id='stats' class='btn btn-default'></a>
+    </div>
+  </div>
+</div>
 <div class="row">
 
-LOCATION DASHBOARD
 <!-- left view --> 
   <div class="col-xs-6 text-center">
     <h1>the wait</h1>
@@ -13,9 +26,9 @@ LOCATION DASHBOARD
       <div class="center-block circle">
         <div>
             <h1>{{average | date:'mm'}}
-                <span class='minutes'>mins</span>
+                <span class='minutesCust'>mins</span>
             </h1>
-            <h3 class='average'>average</h3>
+            <h3 class='averageCust'>average</h3>
         </div>
       </div>
     </div>
@@ -45,12 +58,14 @@ LOCATION DASHBOARD
     <h1>customers</h1>
    
     <div class="row">
-      <div class="center-block square">
+      <bar-chart data="data"></bar-chart>
+
+<!--       <div class="center-block square">
           <div>
               <h1>{{averageDailyCust}}</h1>
               <h3>average daily</h3>
           </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="row">
@@ -62,11 +77,21 @@ LOCATION DASHBOARD
             <h3>customers</h3>
             <h4>total</h4>
           </div>  
-      </div>   
+      </div> 
+
+    <div class="row">
+      <div class="col-xs-8">      
+          <div class='pull-right rightNum'>
+            <h2>{{averageDailyCust}}</h2>
+          </div>
+          <div class='pull-right rightTextContainer'>
+            <h3>average</h3>
+            <h4>daily</h4>
+          </div>  
+      </div>    
     </div> <!-- end of weeklytotal -->
   </div> <!-- end of rightviewcontainer -->
 </div> <!-- end MAIN row -->
 
 </div>
 
-<pre> {{stats | json}}</pre>

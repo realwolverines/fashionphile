@@ -3,11 +3,9 @@ app = angular.module('sliderDir', []);
 app.directive('sliderDirective', function(){
 	return {
 		restrict: "A",
-		templateUrl: "/assets/sliderDirective/slidertemplate.html",
+		templateUrl: "/app/directives/sliderTemplate.html",
 		scope: {
-			data: "=",
-			toggle: "&",
-			newImage: "&"
+			data: "="
 		},
 		link: function(scope, elem, attr){
 			scope.toggs = $('#CheckBox')[0].value;
@@ -33,7 +31,7 @@ app.directive('sliderDirective', function(){
 		    	scroll: {
 		    		items: 1,
 		    		easing: 'linear',
-		    		duration: 5000,
+		    		duration: 8000,
 		    		timeoutDuration: 0,
 		    		pauseOnHover: "immediate"
 		    	}

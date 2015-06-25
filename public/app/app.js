@@ -1,10 +1,14 @@
 (function(){
   'use strict';
 
-var app = angular.module('fashionphile', [ 'ui.router', 'editer', 'toaster', 'ui.tree', 'treeApp', 'sliderDir']);
+var app = angular.module('fashionphile', [ 'ui.router', 'weekly.barchart', 'editer', 'ui.tree', 'toaster', 'sliderDir', 'ui.bootstrap']);
 
 //config
 app
+  // .run(function($state,$rootScope){
+  //   $rootScope.$state = $state;
+  // })
+
   .config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.when('', '/');
     $urlRouterProvider.otherwise('/');
@@ -36,7 +40,6 @@ app
           resolve: {
             customerLocation: function($q, $state, $stateParams, SelectionService) {
               var nameParam = $stateParams.id; 
-              console.log('nameparam', nameParam)
               var deferred = $q.defer();
                   SelectionService.getLocationByParam(nameParam)
                     .then(function(location) {
@@ -60,26 +63,36 @@ app
                     dfd.resolve(customers); 
                   }); 
                 return dfd.promise; 
-              }
+              },
+            customerLocation: function($q, $state, $stateParams, SelectionService) {
+              var nameParam = $stateParams.location; 
+              console.log('nameparam', nameParam)
+              var deferred = $q.defer();
+                SelectionService.getLocationByParam(nameParam)
+                  .then(function(location) {
+                    var currentLocation = location[0];
+                    deferred.resolve(currentLocation);
+                });
+                return deferred.promise;
+            }
           }
       })
       .state('walldisplay', {
-        url: '/walldisplay/:location',
-        templateUrl: 'app/wallDisplay/wallDisplayView.html',
-        controller: 'WallDisplayCtrl',
-        resolve: {
-          customers: function($state, $stateParams, CustomerService, $q){
-            var location = $stateParams.location;
-            var dfd = $q.defer()
-              CustomerService.getCustomers(location)
-              .then(function(customers){
-                dfd.resolve(customers);
-              })
-              return dfd.promise;
+          url: '/walldisplay/:location',
+          templateUrl : 'app/wallDisplay/wallDisplayView.html',
+          controller  : 'WallDisplayCtrl',
+          resolve: {
+            customers: function($state, $stateParams, CustomerService, $q){
+              var location = $stateParams.location; 
+              var dfd = $q.defer(); 
+                CustomerService.getCustomers(location)
+                  .then(function(customers){
+                    dfd.resolve(customers); 
+                  }); 
+                return dfd.promise; 
+              }
           }
-        }
       })
-
       .state('admin', {
           url: '/admin',
           templateUrl : 'app/admin/adminView.html',
@@ -103,6 +116,7 @@ app
               }
           }
       })
+
       .state('dashboard', {
           url: '/dashboard/:id',
           templateUrl : 'app/dashboard/dashboardView.html',
@@ -117,6 +131,17 @@ app
                   dfd.resolve(stats.data[0]);
                 });
               return dfd.promise;
+            },
+            customerLocation: function($q, $state, $stateParams, SelectionService) {
+              var nameParam = $stateParams.id; 
+              console.log('nameparam', nameParam)
+              var deferred = $q.defer();
+                SelectionService.getLocationByParam(nameParam)
+                  .then(function(location) {
+                    var currentLocation = location[0];
+                    deferred.resolve(currentLocation);
+                });
+                return deferred.promise;
             }
           }
       }); 
