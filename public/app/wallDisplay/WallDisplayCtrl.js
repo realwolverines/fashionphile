@@ -19,6 +19,7 @@ app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerSe
     $scope.emptyqueue = true;
   }
 
+    console.log("Customers from CTRL", $scope.customers)
   //$interval hack
 
    $interval(function(location){
@@ -58,14 +59,35 @@ app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerSe
   //      console.log('hey, customers has changed!');
   //  });
 
+// CAROUSEL SETTINGS---------------------
+  $scope.carouselSwitch = false;
+  $scope.sliderSettings = false;
+  $scope.largeTrue = function(){
+    $scope.carouselSwitch = false;
+  }
+  $scope.sliderTrue = function(){
+    $scope.carouselSwitch = true;
+  }
+  $scope.sliderSettingsSwitch = function(){
+    $scope.sliderSettings = !$scope.sliderSettings;
+  }
 
   //wall carousel interval
-    $scope.myInterval = 8000;
-    var slides = $scope.slides = [
-      {image: 'assets/img/helloLovely.jpg'},
-      {image: 'assets/img/springClean.jpg'},
-      {image: 'assets/img/springFling.jpg'}
-     ];
+    $scope.myInterval = 1000;
+    $scope.slidesData = [          
+                  {    
+                    "children":[
+                {image: 'assets/img/helloLovely.jpg'},
+                {image: 'assets/img/springClean.jpg'},
+                {image: 'assets/img/springFling.jpg'}
+               ],
+                "dateAdded":1433434097840,
+                "id":"0",
+                "title":"Carousel Images",
+                "folder": true,
+              }
+          ];
+    $scope.slides = $scope.slidesData[0].children
          
 
   //tree data and arranging
@@ -170,12 +192,33 @@ app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerSe
 
      $scope.newImage = function(input) {
       console.log($scope.data)
+      if(!input) { 
+        console.log("Please enter Valid Url")
+      }
+      else {
        $scope.data[0].children.push({
         image: input
        });
        $scope.imageUrl = "";
+      };
+     };
+    $scope.newImageLg = function(input) {
+      console.log($scope.slidesData)
+      if(!input) { 
+        console.log("Please enter Valid Url")
+      }
+      else {
+       $scope.slidesData[0].children.push({
+        image: input
+       });
+       $scope.imageUrlLg = "";
+      };
      };
 
+
+  if ($scope.toggle.value) {
+    console.log("toggleCTRL", $scope.toggle)
+  }
   $scope.data = [          
         {    
           "children":[

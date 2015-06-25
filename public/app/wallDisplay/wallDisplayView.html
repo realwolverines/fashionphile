@@ -32,8 +32,154 @@
 </div>
 
 
+<div id="slideout">
+  <div id="slideout_inner">
 
-<!-- Slider Carousel -->
+  <div>
+    <h2><span class="btn-lg glyphicon glyphicon-cog"></span>Settings</h2>
+  </div>
+<!-- TABS -->
+  <div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a ng-click="largeTrue()" role="tab" data-toggle="tab">Large Carousel</a></li>
+    <li role="presentation"><a ng-click="sliderTrue()" role="tab" data-toggle="tab">Sliding Carousel</a></li>
+  </ul>
+</div>
 
-<div slider-directive data="data" ng-show="!emptyqueue"></div>
+<!-- END TABS -->
+
+<!-- LARGE CAROUSEL -->
+<div class="frame" ng-hide="carouselSwitch">
+    <!-- UI-TREE FOR LARGE CAROUSEL-->
+<div class="container">
+  </br>
+    </br>
+    <div class="row">
+      <div class="col-lg-4 offset0 span3" style="max-width: 400px">
+        <h3>Manage Images</h3>
+  </br>
+
+  <form>
+    <div class="input-group">
+    <input type="text" class="form-control" placeholder="Add Image URL" ng-model="imageUrlLg">
+    <span class="input-group-btn">
+      <button class="btn btn-default glyphicon glyphicon-plus" ng-click="newImageLg(imageUrlLg)" type="button"></button>
+    </span>
+  </div>
+  </form>
+<!-- Nested node template -->
+        <script type="text/ng-template" id="nodes_renderer.html">
+        <div ui-tree-handle class="newImage tree-node tree-node-content " >
+          <div ng-show="node.folder" class="newImage" data-noDrag></span><h3>
+            {{node.title}}</h3>
+            <hr>
+          </div>
+          <div class="newNode">
+              <div class="nodeIndex" ng-show="node.index <= 10">{{node.index}}</div>
+              <div  class="button btn-lg glyphicon glyphicon-x" ng-hide="node.index <= 10"></div>
+              <div class="newImage">
+                <img ng-show="!node.folder" style="height: 100px;" src={{node.image}}>
+              </div>
+          </div>
+        </div>
+<!-- Child Nodes -->
+            <ol ui-tree-nodes="" ng-model="node.children" ng-class="{hidden: collapsed}">
+              <li class="newImage" ng-repeat="node in node.children" ui-tree-node ng-include="'nodes_renderer.html'">
+              </li>
+            </ol>
+        </script>
+<!-- Repeat code -->
+        <div ui-tree id="tree-root">
+          <ol ui-tree-nodes="" ng-model="data">
+            <li ng-repeat="node in slidesData" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+          </ol>
+        </div>
+      </div>
+
+</div>
+
+</div>
+</div>
+
+<!-- SLIDER CAROUSEL -->
+<div class="frame" ng-show="carouselSwitch">
+  </br>
+  <button class="btn success" ng-click="sliderSettingsSwitch()">Slider Settings
+    <div class="glyphicon glyphicon-menu-down" ng-show='sliderSettings'></div>
+    <div class="glyphicon glyphicon-menu-right" ng-hide='sliderSettings'></div>
+  </button>
+  <div class="options" ng-show="sliderSettings">
+    <div>
+        <h3>Image Slider:</h3> 
+        <input id="CheckBox" type="checkbox" data-off-text="OFF" data-on-text="ON" checked="true" class="BSswitch" ng-click="toggle === !toggle" ng-model="toggle">
+    </div>
+    <div>
+        <h3>Direction:</h3> 
+        <input id="CheckBox" type="checkbox" data-off-text="Right" data-on-text="Left" checked="false" class="BSswitch" ng-click="direction()">
+    </div>
+    <div>  
+      <h3>Speed:</h3> 
+       <select class="selectpicker">
+        <option value="">Slow</option>
+        <option value="">Medium</option>
+        <option value="">Fast</option>
+      </select>
+     </div> 
+  </div>
+  <hr>
+  <!-- UI-TREE -->
+<div class="container">
+  </br>
+    </br>
+    <div class="row">
+      <div class="col-lg-4 offset0 span3" style="max-width: 400px">
+        <h3>Manage Images</h3>
+</br>
+
+    <form>
+  <div class="input-group">
+  <input type="text" class="form-control" placeholder="Add Image URL" ng-model="imageUrl">
+  <span class="input-group-btn">
+    <button class="btn btn-default glyphicon glyphicon-plus" ng-click="newImage(imageUrl)" type="button"></button>
+  </span>
+</div>
+</form>
+<!-- Nested node template -->
+        <script type="text/ng-template" id="nodes_renderer.html">
+        <div ui-tree-handle class="newImage tree-node tree-node-content " >
+          <div ng-show="node.folder" class="newImage" data-noDrag></span><h3>
+            {{node.title}}</h3>
+            <hr>
+          </div>
+          <div class="newNode">
+              <div class="nodeIndex" ng-show="node.index <= 10">{{node.index}}</div>
+              <div  class="button btn-lg glyphicon glyphicon-x" ng-hide="node.index <= 10"></div>
+              <div class="newImage">
+                <img ng-show="!node.folder" style="height: 100px;" src={{node.image}}>
+              </div>
+          </div>
+        </div>
+<!-- Child Nodes -->
+            <ol ui-tree-nodes="" ng-model="node.children" ng-class="{hidden: collapsed}">
+              <li class="newImage" ng-repeat="node in node.children" ui-tree-node ng-include="'nodes_renderer.html'">
+              </li>
+            </ol>
+        </script>
+<!-- Repeat code -->
+        <div ui-tree id="tree-root">
+          <ol ui-tree-nodes="" ng-model="data">
+            <li ng-repeat="node in data" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+   </div>
+  </div>
+</div>
+</div>
+<!-- END SLIDEOUT -->
+
+<!-- Slider Carousel Directive-->
+<div slider-directive data="data" emptyqueue="!emptyqueue"></div>
 
