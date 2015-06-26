@@ -19,10 +19,6 @@ app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerSe
     $scope.emptyqueue = true;
   }
 
-<<<<<<< HEAD
-    console.log("Customers from CTRL", $scope.customers)
-=======
->>>>>>> 20b3bff52a3b21928e9d3b82bab3fa592041df0f
   //$interval hack
 
    $interval(function(location){
@@ -62,7 +58,6 @@ app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerSe
   //      console.log('hey, customers has changed!');
   //  });
 
-<<<<<<< HEAD
 // CAROUSEL SETTINGS---------------------
   $scope.carouselSwitch = false;
   $scope.sliderSettings = false;
@@ -92,17 +87,7 @@ app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerSe
               }
           ];
     $scope.slides = $scope.slidesData[0].children
-=======
-
-  //wall carousel interval
-    $scope.myInterval = 8000;
-    var slides = $scope.slides = [
-      {image: 'assets/img/helloLovely.jpg'},
-      {image: 'assets/img/springClean.jpg'},
-      {image: 'assets/img/springFling.jpg'}
-     ];
->>>>>>> 20b3bff52a3b21928e9d3b82bab3fa592041df0f
-         
+       
 
   //tree data and arranging
 
@@ -206,18 +191,14 @@ app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerSe
 
      $scope.newImage = function(input) {
       console.log($scope.data)
-<<<<<<< HEAD
       if(!input) { 
         console.log("Please enter Valid Url")
       }
       else {
-=======
->>>>>>> 20b3bff52a3b21928e9d3b82bab3fa592041df0f
        $scope.data[0].children.push({
         image: input
        });
        $scope.imageUrl = "";
-<<<<<<< HEAD
       };
      };
     $scope.newImageLg = function(input) {
@@ -237,10 +218,7 @@ app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerSe
   if ($scope.toggle.value) {
     console.log("toggleCTRL", $scope.toggle)
   }
-=======
-     };
 
->>>>>>> 20b3bff52a3b21928e9d3b82bab3fa592041df0f
   $scope.data = [          
         {    
           "children":[
