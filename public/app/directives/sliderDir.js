@@ -6,12 +6,14 @@ app.directive('sliderDirective', function(){
 		templateUrl: "/app/directives/sliderTemplate.html",
 		scope: {
 			data: "=",
-			emptyqueue: "="
+			emptyqueue: "=",
+			direction: "="
 		},
 		link: function(scope, elem, attr){
 			scope.toggs = $('#CheckBox')[0].value;
 			console.log("data", scope.data);
 			console.log('queu', scope.emptyqueue)
+			console.log("direction from DIRective", scope.direction)
 			
 			scope.active = false;
 			scope.open = function(){
@@ -29,7 +31,7 @@ app.directive('sliderDirective', function(){
 				console.log("$c", scope);
 
 		    $c.carouFredSel({
-		    	direction: "left",
+		    	direction: scope.direction,
 		    	// items: itemCount,
 		    	scroll: {
 		    		items: 1,
