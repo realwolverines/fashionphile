@@ -61,6 +61,9 @@ app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerSe
 // CAROUSEL SETTINGS---------------------
   $scope.carouselSwitch = false;
   $scope.sliderSettings = false;
+  $scope.sliderToggle = true;
+  $scope.direction = "left";
+
   $scope.largeTrue = function(){
     $scope.carouselSwitch = false;
   }
@@ -71,8 +74,22 @@ app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerSe
     $scope.sliderSettings = !$scope.sliderSettings;
   }
 
+// SWITCH TOGGLES
+  $('input[name="slToggle"]').on('switchChange.bootstrapSwitch', function(event, state) {
+    $scope.sliderToggle = state;
+  });
+  $('input[name="directionToggle"]').on('switchChange.bootstrapSwitch', function(event, state) {
+    if (state === true) {
+      $scope.direction = "left";
+    }
+    else {
+      $scope.direction = "right";
+    }
+    console.log("Direction", $scope.direction)
+  });
+
   //wall carousel interval
-    $scope.myInterval = 1000;
+    $scope.myInterval = 5000;
     $scope.slidesData = [          
                   {    
                     "children":[
@@ -99,9 +116,6 @@ app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerSe
       scope.remove();
     };
 
-    $scope.toggle = function(scope) {
-      scope.toggle();
-    };
 
     $scope.moveLastToTheBegginig = function () {
       var a = $scope.data.pop();
@@ -214,10 +228,6 @@ app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerSe
       };
      };
 
-
-  if ($scope.toggle.value) {
-    console.log("toggleCTRL", $scope.toggle)
-  }
 
   $scope.data = [          
         {    

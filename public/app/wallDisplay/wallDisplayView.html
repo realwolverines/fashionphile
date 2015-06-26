@@ -111,11 +111,11 @@
   <div class="options" ng-show="sliderSettings">
     <div>
         <h3>Image Slider:</h3> 
-        <input id="CheckBox" type="checkbox" data-off-text="OFF" data-on-text="ON" checked="true" class="BSswitch" ng-click="toggle === !toggle" ng-model="toggle">
+        <input id="CheckBox" name="slToggle" type="checkbox" data-off-text="OFF" data-on-text="ON" class="BSswitch">
     </div>
     <div>
         <h3>Direction:</h3> 
-        <input id="CheckBox" type="checkbox" data-off-text="Right" data-on-text="Left" checked="false" class="BSswitch" ng-click="direction()">
+        <input id="CheckBox" name="directionToggle" type="checkbox" data-off-text="Right" data-on-text="Left" checked="false" class="BSswitch">
     </div>
     <div>  
       <h3>Speed:</h3> 
@@ -180,6 +180,6 @@
 <!-- END SLIDEOUT -->
 
 <!-- Slider Carousel Directive-->
-<div slider-directive data="data" emptyqueue="!emptyqueue"></div>
+<div slider-directive data="data" emptyqueue="!emptyqueue" ng-show="sliderToggle"></div>
 
 
