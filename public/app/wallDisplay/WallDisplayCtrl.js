@@ -58,15 +58,53 @@ app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerSe
   //      console.log('hey, customers has changed!');
   //  });
 
+// CAROUSEL SETTINGS---------------------
+  $scope.carouselSwitch = false;
+  $scope.sliderSettings = false;
+  $scope.sliderToggle = true;
+  $scope.direction = "left";
+
+  $scope.largeTrue = function(){
+    $scope.carouselSwitch = false;
+  }
+  $scope.sliderTrue = function(){
+    $scope.carouselSwitch = true;
+  }
+  $scope.sliderSettingsSwitch = function(){
+    $scope.sliderSettings = !$scope.sliderSettings;
+  }
+
+// SWITCH TOGGLES
+  $('input[name="slToggle"]').on('switchChange.bootstrapSwitch', function(event, state) {
+    $scope.sliderToggle = state;
+  });
+  $('input[name="directionToggle"]').on('switchChange.bootstrapSwitch', function(event, state) {
+    if (state === true) {
+      $scope.direction = "left";
+    }
+    else {
+      $scope.direction = "right";
+    }
+    console.log("Direction", $scope.direction)
+  });
 
   //wall carousel interval
-    $scope.myInterval = 8000;
-    var slides = $scope.slides = [
-      {image: 'assets/img/helloLovely.jpg'},
-      {image: 'assets/img/springClean.jpg'},
-      {image: 'assets/img/springFling.jpg'}
-     ];
-         
+    $scope.myInterval = 5000;
+    $scope.slidesData = [          
+                  {    
+                    "children":[
+                {image: 'assets/img/helloLovely.jpg'},
+                {image: 'assets/img/springClean.jpg'},
+                {image: 'assets/img/springFling.jpg'}
+               ],
+                "dateAdded":1433434097840,
+                "id":"0",
+                "title":"Carousel Images",
+                "folder": true,
+              }
+          ];
+    $scope.slides = $scope.slidesData[0].children
+       
 
   //tree data and arranging
 
@@ -78,9 +116,6 @@ app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerSe
       scope.remove();
     };
 
-    $scope.toggle = function(scope) {
-      scope.toggle();
-    };
 
     $scope.moveLastToTheBegginig = function () {
       var a = $scope.data.pop();
@@ -170,11 +205,29 @@ app.controller('WallDisplayCtrl', function($scope, $state, $interval, CustomerSe
 
      $scope.newImage = function(input) {
       console.log($scope.data)
+      if(!input) { 
+        console.log("Please enter Valid Url")
+      }
+      else {
        $scope.data[0].children.push({
         image: input
        });
        $scope.imageUrl = "";
+      };
      };
+    $scope.newImageLg = function(input) {
+      console.log($scope.slidesData)
+      if(!input) { 
+        console.log("Please enter Valid Url")
+      }
+      else {
+       $scope.slidesData[0].children.push({
+        image: input
+       });
+       $scope.imageUrlLg = "";
+      };
+     };
+
 
   $scope.data = [          
         {    
